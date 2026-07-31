@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-primary fs-6 px-3 py-2 mb-3">
+
+🚀 AI Career Copilot
+
+</span>
+
+<h1 class="display-4 fw-bold">
+
+Career Intelligence Dashboard
+
+</h1>
+
+<p class="lead text-muted">
+
+Discover your ideal career path, salary potential, and AI-powered recommendations.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/dashboard/" class="btn btn-primary btn-lg rounded-pill me-2">
+
+🏠 Dashboard
+
+</a>
+
+<button onclick="history.back()" class="btn btn-outline-secondary btn-lg rounded-pill">
+
+← Back
+
+</button>
+
+</div>
+
+</div>
+<!-- ================= AI Career Insights ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+
+<div style="font-size:45px;">🎯</div>
+
+<h2 class="fw-bold text-primary">
+
+{{ career_score }}%
+
+</h2>
+
+<p class="text-muted">
+
+Career Match
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+
+<div style="font-size:45px;">💼</div>
+
+<h4 class="fw-bold">
+
+{{ career }}
+
+</h4>
+
+<p class="text-muted">
+
+Recommended Role
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+
+<div style="font-size:45px;">💰</div>
+
+<h4 class="fw-bold text-success">
+
+{{ salary }}
+
+</h4>
+
+<p class="text-muted">
+
+Expected Salary
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4 h-100">
+
+<div style="font-size:45px;">🚀</div>
+
+<h2 class="fw-bold text-danger">
+
+{{ readiness }}%
+
+</h2>
+
+<p class="text-muted">
+
+Readiness
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Career Progress ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<h2 class="fw-bold mb-4">
+
+📈 Career Progress
+
+</h2>
+
+<label class="fw-bold">
+
+Career Match
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div
+class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+
+style="width:{{ career_score }}%;">
+
+{{ career_score }}%
+
+</div>
+
+</div>
+
+<label class="fw-bold">
+
+Career Readiness
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div
+class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+
+style="width:{{ readiness }}%;">
+
+{{ readiness }}%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Recommendations ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-lg rounded-5 h-100">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold mb-4">
+
+🔥 High Priority
+
+</h3>
+
+<div class="alert alert-primary">
+
+Learn Docker
+
+</div>
+
+<div class="alert alert-primary">
+
+Build Production Projects
+
+</div>
+
+<div class="alert alert-primary">
+
+Improve DSA
+
+</div>
+
+<div class="alert alert-primary">
+
+Practice Mock Interviews
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-lg rounded-5 h-100">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold mb-4">
+
+⭐ Recommended Next Steps
+
+</h3>
+
+<div class="alert alert-success">
+
+Complete AI Career Roadmap
+
+</div>
+
+<div class="alert alert-success">
+
+Generate Portfolio
+
+</div>
+
+<div class="alert alert-success">
+
+Improve Resume
+
+</div>
+
+<div class="alert alert-success">
+
+Apply to Real Jobs
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="card border-0 shadow-lg rounded-5">
+
+<div class="card-header bg-dark text-white">
+
+<h3>
+
+🤖 Detailed AI Report
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div
+style="
+background:#0f172a;
+color:#e2e8f0;
+padding:30px;
+border-radius:18px;
+max-height:650px;
+overflow:auto;
+">
+
+<pre
+style="
+white-space:pre-wrap;
+background:transparent;
+color:white;
+font-size:15px;
+font-family:Segoe UI;
+margin:0;
+">
+
+{{ analysis }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+<div class="text-center mt-5">
+
+<a
+href="/career-roadmap/"
+class="btn btn-success btn-lg rounded-pill px-5 me-3">
+
+🗺 Career Roadmap
+
+</a>
+
+<a
+href="/resume-improvement/"
+class="btn btn-primary btn-lg rounded-pill px-5 me-3">
+
+📄 Improve Resume
+
+</a>
+
+<a
+href="/placement-prediction/"
+class="btn btn-danger btn-lg rounded-pill px-5">
+
+🎯 Placement Prediction
+
+</a>
+
+</div>
+
+
+{% endblock %}

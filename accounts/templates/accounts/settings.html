@@ -1,0 +1,1308 @@
+{% extends "base.html" %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+<div class="container py-4">
+
+<div class="row justify-content-center">
+
+<div class="col-xl-11">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-primary px-3 py-2 fs-6 mb-3">
+
+⚙ CareerForge AI Settings
+
+</span>
+
+<h1 class="display-5 fw-bold">
+
+Manage Your Account
+
+</h1>
+
+<p class="lead text-muted">
+
+Control your security, notifications, privacy, AI preferences and account settings from one place.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/dashboard/" class="btn btn-primary btn-lg rounded-pill me-2">
+
+🏠 Dashboard
+
+</a>
+
+<button onclick="history.back()"
+
+class="btn btn-outline-secondary btn-lg rounded-pill">
+
+← Back
+
+</button>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="width:180px;
+height:180px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:80px;
+box-shadow:0 20px 45px rgba(37,99,235,.3);">
+
+⚙
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= OVERVIEW ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4 h-100">
+
+<div style="font-size:42px;">👤</div>
+
+<h5 class="fw-bold mt-3">
+
+{{ request.user.username }}
+
+</h5>
+
+<p class="text-muted">
+
+Username
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4 h-100">
+
+<div style="font-size:42px;">📧</div>
+
+<h6 class="mt-3">
+
+{{ request.user.email }}
+
+</h6>
+
+<p class="text-muted">
+
+Email Address
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4 h-100">
+
+<div style="font-size:42px;">🛡</div>
+
+<h5 class="text-success mt-3">
+
+{% if request.user.is_active %}
+
+Active
+
+{% else %}
+
+Inactive
+
+{% endif %}
+
+</h5>
+
+<p class="text-muted">
+
+Account Status
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4 h-100">
+
+<div style="font-size:42px;">⭐</div>
+
+<h5 class="mt-3">
+
+Free Plan
+
+</h5>
+
+<p class="text-muted">
+
+Membership
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= SETTINGS ================= -->
+
+<div class="row">
+
+<!-- LEFT MENU -->
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow rounded-4">
+
+<div class="list-group list-group-flush">
+
+<a href="#security"
+
+class="list-group-item list-group-item-action active py-3">
+
+🔒 Security
+
+</a>
+
+<a href="#account"
+
+class="list-group-item list-group-item-action py-3">
+
+👤 Account
+
+</a>
+
+<a href="#notifications"
+
+class="list-group-item list-group-item-action py-3">
+
+🔔 Notifications
+
+</a>
+
+<a href="#privacy"
+
+class="list-group-item list-group-item-action py-3">
+
+🔐 Privacy
+
+</a>
+
+<a href="#appearance"
+
+class="list-group-item list-group-item-action py-3">
+
+🎨 Appearance
+
+</a>
+
+<a href="#danger"
+
+class="list-group-item list-group-item-action text-danger py-3">
+
+🗑 Danger Zone
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- RIGHT CONTENT -->
+
+<div class="col-lg-9">
+    <!-- ================= SECURITY ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3
+id="security"
+class="fw-bold">
+
+🔒 Security Center
+
+</h3>
+
+<p class="text-muted">
+
+Protect your account with strong security settings.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<a
+href="/accounts/password/change/"
+class="btn btn-primary w-100 rounded-pill py-3">
+
+🔑 Change Password
+
+</a>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<button
+class="btn btn-outline-success w-100 rounded-pill py-3"
+disabled>
+
+🛡 Enable Two-Factor Authentication
+
+</button>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<button
+class="btn btn-outline-dark w-100 rounded-pill py-3"
+disabled>
+
+💻 Login Activity
+
+</button>
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<button
+class="btn btn-outline-info w-100 rounded-pill py-3"
+disabled>
+
+📱 Active Sessions
+
+</button>
+
+</div>
+
+</div>
+
+<div class="alert alert-success mt-4 rounded-4">
+
+<b>Security Status</b>
+
+<hr>
+
+✔ Password Protected
+
+<br>
+
+{% if request.user.email %}
+
+✔ Email Added
+
+{% else %}
+
+✖ Email Missing
+
+{% endif %}
+
+<br>
+
+✔ Account Active
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= ACCOUNT ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3
+id="account"
+class="fw-bold">
+
+👤 Account Information
+
+</h3>
+
+<p class="text-muted">
+
+Basic information associated with your CareerForge account.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6 mb-4">
+
+<label class="fw-bold">
+
+Username
+
+</label>
+
+<input
+type="text"
+class="form-control mt-2"
+value="{{ request.user.username }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label class="fw-bold">
+
+Email Address
+
+</label>
+
+<input
+type="email"
+class="form-control mt-2"
+value="{{ request.user.email }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label class="fw-bold">
+
+Member Since
+
+</label>
+
+<input
+type="text"
+class="form-control mt-2"
+value="{{ request.user.date_joined|date:'d M Y' }}"
+readonly>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<label class="fw-bold">
+
+Account Type
+
+</label>
+
+<input
+type="text"
+class="form-control mt-2"
+value="CareerForge Member"
+readonly>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h3>
+
+📄
+
+</h3>
+
+<h5>
+
+Resume
+
+</h5>
+
+<small class="text-muted">
+
+{% if resume_uploaded %}
+
+Uploaded
+
+{% else %}
+
+Not Uploaded
+
+{% endif %}
+
+</small>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h3>
+
+🌐
+
+</h3>
+
+<h5>
+
+Portfolio
+
+</h5>
+
+{% if profile.portfolio %}
+
+Generated
+
+{% else %}
+
+Not Created
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h3>
+
+🤖
+
+</h3>
+
+<h5>
+
+AI Enabled
+
+</h5>
+
+{% if resume_uploaded %}
+
+Active
+
+{% else %}
+
+Waiting for Resume
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= NOTIFICATION SETTINGS ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3
+id="notifications"
+class="fw-bold">
+
+🔔 Notification Preferences
+
+</h3>
+
+<p class="text-muted">
+
+Choose what updates you would like to receive from CareerForge AI.
+
+</p>
+
+<hr>
+
+<div class="form-check form-switch mb-3">
+
+    {{ form.email_notifications }}
+
+    <label class="form-check-label">
+
+        📧 Email Notifications
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+    {{ form.job_alerts }}
+
+    <label class="form-check-label">
+
+        💼 Job Alerts
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+    {{ form.interview_reminders }}
+
+    <label class="form-check-label">
+
+        🎤 Interview Reminders
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+    {{ form.weekly_report }}
+
+    <label class="form-check-label">
+
+        📈 Weekly Career Report
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch">
+
+    {{ form.ai_career_recommendations }}
+
+    <label class="form-check-label">
+
+        🤖 AI Career Recommendations
+
+    </label>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= PRIVACY ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3
+id="privacy"
+class="fw-bold">
+
+🔐 Privacy Settings
+
+</h3>
+
+<p class="text-muted">
+
+Manage your personal information and visibility.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Resume Visibility
+
+</label>
+
+{{ form.resume_visibility }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="fw-bold">
+
+Portfolio Visibility
+
+</label>
+
+{{ form.portfolio_visibility }}
+
+</div>
+
+<div class="col-md-6">
+
+<a
+
+href="{% url 'download_data' %}"
+
+class="btn btn-outline-primary w-100 rounded-pill">
+
+⬇ Download My Data
+
+</a>
+
+</div>
+
+<div class="col-md-6">
+
+<a
+href="{% url 'download_portfolio' %}"
+class="btn btn-outline-success w-100 rounded-pill">
+
+🌐 Export Portfolio
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= APPEARANCE ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3
+id="appearance"
+class="fw-bold">
+
+🎨 Appearance
+
+</h3>
+
+<p class="text-muted">
+
+Customize the interface of CareerForge AI.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-4 mb-3">
+
+<label class="form-label fw-bold">
+
+Theme
+
+</label>
+
+{{ form.theme }}
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="fw-bold">
+
+Language
+
+</label>
+
+{{ form.language }}
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<label class="fw-bold">
+
+Time Zone
+
+</label>
+
+{{ form.timezone }}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= AI SETTINGS ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold">
+
+🤖 AI Preferences
+
+</h3>
+
+<p class="text-muted">
+
+Personalize how CareerForge AI assists you.
+
+</p>
+
+<hr>
+
+<div class="form-check form-switch mb-3">
+
+    <input
+    type="checkbox"
+    id="ai_resume_analysis"
+    class="form-check-input ai-toggle"
+    {% if profile.ai_resume_analysis %}checked{% endif %}>
+
+    <label
+        for="ai_resume_analysis"
+        class="form-check-label">
+
+        Enable AI Resume Analysis
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+    <input
+        type="checkbox"
+        id="ai_career_recommendations"
+        class="form-check-input ai-toggle"
+        {% if profile.ai_career_recommendations %}checked{% endif %}>
+
+    <label
+        for="ai_career_recommendations"
+        class="form-check-label">
+
+        Enable AI Career Recommendations
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch mb-3">
+
+    <input
+        type="checkbox"
+        id="ai_job_matching"
+        class="form-check-input ai-toggle"
+        {% if profile.ai_job_matching %}checked{% endif %}>
+
+    <label
+        for="ai_job_matching"
+        class="form-check-label">
+
+        Enable AI Job Matching
+
+    </label>
+
+</div>
+
+<div class="form-check form-switch">
+
+    <input
+        type="checkbox"
+        id="smart_notifications"
+        class="form-check-input ai-toggle"
+        {% if profile.smart_notifications %}checked{% endif %}>
+
+    <label
+        for="smart_notifications"
+        class="form-check-label">
+
+        Enable Smart Notifications
+
+    </label>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= ACCOUNT STATISTICS ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold">
+
+📊 Account Statistics
+
+</h3>
+
+<p class="text-muted">
+
+Overview of your CareerForge AI activity.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h2 class="text-primary">
+
+{{ applications_count }}
+
+</h2>
+
+<small>Applications</small>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h2 class="text-success">
+
+{{ saved_jobs_count }}
+
+</h2>
+
+<small>Saved Jobs</small>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h2 class="text-warning">
+
+{% if resume_uploaded %}
+
+{{ placement_score }}%
+
+{% else %}
+
+<span class="text-secondary">
+
+N/A
+
+</span>
+
+{% endif %}
+
+</h2>
+
+<small>Placement Score</small>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<div class="card bg-light border-0 rounded-4 text-center p-3">
+
+<h2 class="text-danger">
+
+{% if resume_uploaded %}
+
+{{ resume_score }}%
+
+{% else %}
+
+<span class="text-secondary">
+
+N/A
+
+</span>
+
+{% endif %}
+
+</h2>
+
+<small>Resume Score</small>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= DATA MANAGEMENT ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold">
+
+💾 Data Management
+
+</h3>
+
+<p class="text-muted">
+
+Export and backup your CareerForge data.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-4 mb-3">
+
+{% if resume_uploaded %}
+
+<a href="{% url 'download_resume_pdf' %}"
+class="btn btn-outline-primary rounded-pill w-100">
+
+📄 Download Resume
+
+</a>
+
+{% else %}
+
+<button
+class="btn btn-outline-secondary rounded-pill w-100"
+disabled>
+
+No Resume
+
+</button>
+
+{% endif %}
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<button class="btn btn-outline-success rounded-pill w-100">
+
+🌐 Export Portfolio
+
+</button>
+
+</div>
+
+<div class="col-md-4 mb-3">
+
+<a
+href="{% url 'backup_data' %}"
+class="btn btn-outline-warning w-100 rounded-pill">
+
+📦 Backup Data
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= HELP CENTER ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-4">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold">
+
+🆘 Help & Support
+
+</h3>
+
+<p class="text-muted">
+
+Need assistance? Explore these quick actions.
+
+</p>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<a
+href="{% url 'help_center' %}"
+class="btn btn-outline-primary w-100 rounded-pill">
+
+📘 Help Center
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="{% url 'contact_support' %}"
+class="btn btn-outline-success w-100 rounded-pill">
+
+💬 Contact Support
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="{% url 'faq' %}"
+class="btn btn-outline-info w-100 rounded-pill">
+
+❓ FAQ
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="{% url 'report_bug' %}"
+class="btn btn-outline-dark w-100 rounded-pill">
+
+🐞 Report Bug
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= DANGER ZONE ================= -->
+
+<div class="card border-danger border-2 shadow rounded-4 mb-5">
+
+<div class="card-body p-4">
+
+<h3 id="danger" class="fw-bold text-danger">
+
+⚠ Danger Zone
+
+</h3>
+
+<p class="text-muted">
+
+Deleting your account is permanent. All resumes, portfolios,
+applications, AI reports and settings will be removed forever.
+
+</p>
+
+<hr>
+
+<div class="d-flex flex-wrap gap-3">
+
+<a
+href="{% url 'delete_account' %}"
+class="btn btn-danger rounded-pill">
+
+🗑 Delete Account
+
+</a>
+
+<button
+class="btn btn-outline-secondary rounded-pill px-4"
+disabled>
+
+🚫 Deactivate Account
+
+</button>
+
+</div>
+<div class="text-end mt-4">
+
+    <button
+        type="submit"
+        class="btn btn-primary btn-lg rounded-pill px-5">
+
+        💾 Save Settings
+
+    </button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="text-center text-muted mt-5">
+
+<hr>
+
+<h5 class="fw-bold">
+
+CareerForge AI
+
+</h5>
+
+<p>
+
+Version 2.0 • AI Career Intelligence Platform
+
+</p>
+
+<p>
+
+Made with ❤️ for Students & Professionals
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</form>
+<script>
+
+function getCookie(name){
+
+    let cookieValue = null;
+
+    if(document.cookie && document.cookie !== ""){
+
+        const cookies = document.cookie.split(";");
+
+        for(let cookie of cookies){
+
+            cookie = cookie.trim();
+
+            if(cookie.startsWith(name + "=")){
+
+                cookieValue = decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                );
+
+                break;
+
+            }
+
+        }
+
+    }
+
+    return cookieValue;
+
+}
+
+
+document.querySelectorAll(".ai-toggle, .notification-toggle").forEach(function(toggle){
+
+    toggle.addEventListener("change",function(){
+
+        fetch("{% url 'update_ai_preferences' %}",{
+
+            method:"POST",
+
+            headers:{
+
+                "Content-Type":"application/json",
+
+                "X-CSRFToken":getCookie("csrftoken")
+
+            },
+
+            body:JSON.stringify({
+
+                field:this.id,
+
+                value:this.checked
+
+            })
+
+        })
+
+        .then(response=>response.json())
+
+        .then(data=>{
+
+            console.log(data);
+
+        });
+
+    });
+
+});
+
+</script>
+{% endblock %}

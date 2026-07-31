@@ -1,0 +1,355 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-primary fs-6 px-3 py-2 mb-3">
+
+🤖 AI Powered Portfolio Builder
+
+</span>
+
+<h1 class="display-3 fw-bold">
+
+🌐 Portfolio Studio
+
+</h1>
+
+<p class="lead text-muted mt-3">
+
+Transform your resume into a beautiful recruiter-ready portfolio website using AI.
+
+Preview it instantly, download it, and showcase your work professionally.
+
+</p>
+
+<div class="d-flex flex-wrap align-items-center gap-2 mt-4">
+
+<a
+href="/preview-portfolio/"
+target="_blank"
+class="btn btn-success rounded-pill px-3 py-2">
+
+👁 Preview
+
+</a>
+
+<a
+href="/download-portfolio/"
+class="btn btn-primary rounded-pill px-3 py-2">
+
+💾 Download
+
+</a>
+
+<a
+href="{% url 'regenerate_portfolio' %}"
+class="btn btn-warning rounded-pill px-3 py-2">
+
+🔄 Regenerate
+
+</a>
+
+<button
+class="btn btn-dark rounded-pill px-3 py-2"
+disabled>
+
+⚡ AI Generated
+
+</button>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="
+width:220px;
+height:220px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:75px;
+box-shadow:0 20px 40px rgba(37,99,235,.25);
+">
+
+🌐
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Portfolio Analytics ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>
+
+{% if portfolio_exists %}
+
+95%
+
+{% else %}
+
+--
+
+{% endif %}
+
+</h1>
+
+<h5>Portfolio Score</h5>
+
+<small class="text-muted">
+
+Recruiter Ready
+
+</small>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>100%</h1>
+
+<h5>Responsive</h5>
+
+<small class="text-muted">
+
+Desktop + Mobile
+
+</small>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>
+
+{% if portfolio_exists %}
+
+✔
+
+{% else %}
+
+--
+
+{% endif %}
+
+</h1>
+
+<h5>Generated</h5>
+
+<small class="text-muted">
+
+Bootstrap 5
+
+</small>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>
+
+{% if portfolio_exists %}
+
+🚀
+
+{% else %}
+
+--
+
+{% endif %}
+
+</h1>
+
+<h5>Live Preview</h5>
+
+<small class="text-muted">
+
+Instant Launch
+
+</small>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= AI Portfolio Insights ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<div class="row">
+
+<div class="col-lg-6">
+
+<h2 class="fw-bold mb-4">
+
+🤖 AI Portfolio Analysis
+
+</h2>
+
+{% for item in analysis %}
+
+<div class="alert {% if '⚠' in item %}alert-warning{% else %}alert-success{% endif %}">
+
+{{ item }}
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="col-lg-6">
+
+<h2 class="fw-bold mb-4">
+
+🚀 Portfolio Features
+
+</h2>
+
+<ul class="list-group list-group-flush">
+
+<li class="list-group-item">
+
+🌐 Modern Hero Section
+
+</li>
+
+<li class="list-group-item">
+
+💻 Project Showcase
+
+</li>
+
+<li class="list-group-item">
+
+📱 Mobile Responsive
+
+</li>
+
+<li class="list-group-item">
+
+🎨 Bootstrap 5 Design
+
+</li>
+
+<li class="list-group-item">
+
+⚡ Fast Loading
+
+</li>
+
+<li class="list-group-item">
+
+📄 Resume Ready
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Generated Portfolio ================= -->
+
+<div class="card border-0 shadow-lg rounded-5">
+
+<div class="card-header bg-dark text-white">
+
+<h3>
+
+📄 Generated Portfolio Source Code
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div
+
+style="
+
+background:#111827;
+
+color:#00ff88;
+
+padding:25px;
+
+border-radius:15px;
+
+max-height:700px;
+
+overflow:auto;
+
+">
+
+<pre
+style="
+
+white-space:pre-wrap;
+
+color:#00ff88;
+
+font-size:14px;
+
+">
+
+{{ portfolio }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,287 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-danger fs-6 px-3 py-2 mb-3">
+
+❤️ CareerForge AI
+
+</span>
+
+<h1 class="display-4 fw-bold">
+
+Saved Jobs
+
+</h1>
+
+<p class="lead text-muted">
+
+Keep track of your favourite opportunities and apply whenever you're ready.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/real-jobs/" class="btn btn-primary btn-lg rounded-pill me-2">
+
+🌍 Explore Jobs
+
+</a>
+
+<a href="/dashboard/" class="btn btn-dark btn-lg rounded-pill">
+
+🏠 Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="width:190px;height:190px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:70px;
+box-shadow:0 20px 40px rgba(37,99,235,.25);">
+
+❤️
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= ANALYTICS ================= -->
+
+<div class="row mb-5">
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4">
+
+<h2>{{ jobs|length }}</h2>
+
+<h5>Saved Jobs</h5>
+
+<p class="text-muted">
+
+Jobs bookmarked for future applications.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4">
+
+<h2>AI</h2>
+
+<h5>Smart Tracking</h5>
+
+<p class="text-muted">
+
+Organize jobs with AI-powered tools.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 text-center p-4">
+
+<h2>24/7</h2>
+
+<h5>Available</h5>
+
+<p class="text-muted">
+
+Access your saved jobs anytime.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= SEARCH ================= -->
+
+<div class="card border-0 shadow rounded-4 mb-5">
+
+<div class="card-body">
+
+<input
+type="text"
+class="form-control form-control-lg"
+placeholder="Search your saved jobs...">
+
+</div>
+
+</div>
+
+<!-- ================= JOBS ================= -->
+
+{% for job in jobs %}
+
+<div class="card border-0 shadow-lg rounded-5 mb-4">
+
+<div class="card-body p-4">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<div class="d-flex align-items-center mb-3">
+
+<div
+class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+
+style="width:60px;height:60px;font-size:24px;">
+
+{{ job.company|first }}
+
+</div>
+
+<div class="ms-3">
+
+<h4 class="mb-1">
+
+{{ job.title }}
+
+</h4>
+
+<h6 class="text-muted mb-0">
+
+{{ job.company }}
+
+</h6>
+
+</div>
+
+</div>
+
+<span class="badge bg-success me-2">
+
+Saved
+
+</span>
+
+<span class="badge bg-primary">
+
+Ready to Apply
+
+</span>
+
+</div>
+
+<div class="col-lg-4 text-end">
+
+<a
+href="{{ job.url }}"
+target="_blank"
+class="btn btn-primary rounded-pill px-4 me-2">
+
+🚀 Apply
+
+</a>
+
+<a
+href="/resume-tailoring/"
+class="btn btn-warning rounded-pill px-4 me-2">
+
+📄 Tailor Resume
+
+</a>
+
+<a
+href="/delete-saved-job/{{ job.id }}/"
+class="btn btn-danger rounded-pill px-4">
+
+🗑 Delete
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="card border-0 shadow rounded-5">
+
+<div class="card-body text-center p-5">
+
+<div style="font-size:80px;">
+
+💼
+
+</div>
+
+<h2 class="fw-bold mt-3">
+
+No Saved Jobs
+
+</h2>
+
+<p class="text-muted">
+
+You haven't saved any jobs yet.
+
+Explore opportunities and bookmark your favourites.
+
+</p>
+
+<a
+href="/real-jobs/"
+class="btn btn-primary btn-lg rounded-pill mt-3">
+
+🌍 Explore Jobs
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

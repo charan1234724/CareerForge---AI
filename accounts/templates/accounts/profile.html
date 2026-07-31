@@ -1,0 +1,623 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-11">
+
+<div class="card border-0 shadow-lg">
+
+<div class="card-body p-5">
+
+<div class="row">
+
+<!-- ================= LEFT PROFILE PANEL ================= -->
+
+<div class="col-lg-3">
+
+<div class="card border-0 shadow-lg rounded-4 h-100">
+
+<div class="card-body text-center">
+
+{% if profile.profile_picture %}
+
+<img
+src="{{ profile.profile_picture.url }}"
+class="rounded-circle shadow-lg border border-4 border-white"
+style="
+width:180px;
+height:180px;
+object-fit:cover;
+">
+
+{% else %}
+
+<div
+class="rounded-circle shadow-lg d-flex align-items-center justify-content-center mx-auto"
+style="
+width:180px;
+height:180px;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+font-size:72px;
+color:white;
+font-weight:bold;
+">
+
+{{ request.user.first_name|first|default:request.user.username|first|upper }}{{ request.user.last_name|first|upper }}
+
+</div>
+
+{% endif %}
+
+<h2 class="fw-bold mt-4 mb-1">
+
+{{ request.user.get_full_name|default:request.user.username }}
+
+</h2>
+
+<p class="text-primary fw-semibold">
+
+{{ profile.dream_role|default:"CareerForge Member" }}
+
+</p>
+
+<!-- Profile Completion -->
+
+<div class="mt-4">
+
+    <h6 class="fw-bold">
+
+        Profile Completion
+
+    </h6>
+
+    <div class="progress rounded-pill" style="height:12px;">
+
+        <div
+            class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+            style="width: {{ profile_completion }}%;">
+
+        </div>
+
+    </div>
+
+    <p class="text-success mt-2 fw-semibold">
+
+        {{ profile_completion }}% Completed
+
+    </p>
+
+</div>
+
+<hr>
+
+<div class="text-start">
+
+<div class="mb-3">
+
+<div class="fw-bold">
+
+<i class="fas fa-envelope me-2"></i>
+
+Email
+
+</div>
+
+<div class="text-muted">
+
+{{ request.user.email }}
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<div class="fw-bold">
+
+<i class="fas fa-phone me-2"></i>
+
+Phone
+
+</div>
+
+<div class="text-muted">
+
+{{ profile.phone|default:"Not Added" }}
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<div class="fw-bold">
+
+<i class="fas fa-map-marker-alt me-2"></i>
+
+Location
+
+</div>
+
+<div class="text-muted">
+
+{{ profile.location|default:"Not Added" }}
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<div class="fw-bold">
+
+<i class="fas fa-building me-2"></i>
+
+Dream Company
+
+</div>
+
+<div class="text-muted">
+
+{{ profile.dream_company|default:"Not Added" }}
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Quick Links -->
+
+<div class="card border-0 bg-light rounded-4 mt-4">
+
+<div class="card-body">
+
+<h5 class="fw-bold mb-3">
+
+Quick Links
+
+</h5>
+
+<a href="/resume-summary/" class="btn btn-outline-primary w-100 mb-2 rounded-pill">
+
+📄 Resume Summary
+
+</a>
+
+<a href="{% url 'public_portfolio' request.user.username %}"
+   class="btn btn-outline-success w-100 mb-2 rounded-pill">
+
+    🌐 Portfolio
+
+</a>
+
+<a href="/analytics/" class="btn btn-outline-warning w-100 rounded-pill">
+
+📊 Analytics
+
+</a>
+
+</div>
+
+</div>
+
+<!-- AI Summary -->
+
+<div class="alert alert-primary rounded-4 mt-4">
+
+<h6 class="fw-bold">
+
+🤖 AI Career Summary
+
+</h6>
+
+<hr>
+
+Best suited for:
+
+<ul class="mb-0">
+
+<li>Python Developer</li>
+
+<li>Backend Developer</li>
+
+<li>AI Engineer</li>
+
+</ul>
+
+</div>
+
+<!-- Career Status -->
+
+<div class="card border-0 shadow rounded-4 mt-4">
+
+<div class="card-body text-center">
+
+<h6 class="fw-bold">
+
+Career Status
+
+</h6>
+
+<span class="badge bg-success rounded-pill px-3 py-2"
+style="
+font-size:14px;
+max-width:100%;
+white-space:normal;
+display:inline-block;
+">
+    Open To Opportunities
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Right Section -->
+
+<div class="col-lg-9">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+
+<h2 class="fw-bold">
+
+👤 My Career Profile
+
+</h2>
+
+<p class="text-muted">
+
+Manage your professional information and AI career identity.
+
+</p>
+
+</div>
+
+</div>
+<div class="row mb-4">
+
+    <!-- Resume Score -->
+
+    <div class="col-md-3">
+
+        <div class="card border-0 shadow rounded-4 text-center p-3">
+
+            <h2>
+
+                {% if resume_uploaded %}
+
+                    {{ resume_score }}%
+
+                {% else %}
+
+                    <span class="text-danger">N/A</span>
+
+                {% endif %}
+
+            </h2>
+
+            <small>
+
+                Resume Score
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Placement -->
+
+    <div class="col-md-3">
+
+        <div class="card border-0 shadow rounded-4 text-center p-3">
+
+            <h2>
+
+                {% if resume_uploaded %}
+
+                    {{ placement_score }}%
+
+                {% else %}
+
+                    0%
+
+                {% endif %}
+
+            </h2>
+
+            <small>
+
+                Placement
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Applications -->
+
+    <div class="col-md-3">
+
+        <div class="card border-0 shadow rounded-4 text-center p-3">
+
+            <h2>
+
+                {{ applications_count }}
+
+            </h2>
+
+            <small>
+
+                Applications
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Skills -->
+
+    <div class="col-md-3">
+
+        <div class="card border-0 shadow rounded-4 text-center p-3">
+
+            <h2>
+
+                {% if resume_uploaded %}
+
+                    {{ skills_count }}
+
+                {% else %}
+
+                    0
+
+                {% endif %}
+
+            </h2>
+
+            <small>
+
+                Skills
+
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+<form
+method="POST"
+enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Profile Picture
+
+</label>
+
+{{ form.profile_picture }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Phone Number
+
+</label>
+
+{{ form.phone }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+College
+
+</label>
+
+{{ form.college }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Branch
+
+</label>
+
+{{ form.branch }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Graduation Year
+
+</label>
+
+{{ form.graduation_year }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+CGPA
+
+</label>
+
+{{ form.cgpa }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Location
+
+</label>
+
+{{ form.location }}
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">
+
+Dream Company
+
+</label>
+
+{{ form.dream_company }}
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+Dream Role
+
+</label>
+
+{{ form.dream_role }}
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+LinkedIn Profile
+
+</label>
+
+{{ form.linkedin }}
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+GitHub Profile
+
+</label>
+
+{{ form.github }}
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+Portfolio Website
+
+</label>
+
+{{ form.portfolio }}
+
+</div>
+
+<div class="col-md-12 mb-4">
+
+<label class="form-label">
+
+Professional Bio
+
+</label>
+
+{{ form.bio }}
+
+</div>
+<div class="row">
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Theme</label>
+        {{ form.theme }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Language</label>
+        {{ form.language }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Timezone</label>
+        {{ form.timezone }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Resume Visibility</label>
+        {{ form.resume_visibility }}
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Portfolio Visibility</label>
+        {{ form.portfolio_visibility }}
+    </div>
+
+</div>
+
+<div class="col-md-12">
+
+<button
+class="btn btn-primary btn-lg rounded-pill px-5 shadow">
+
+💾 Save Career Profile
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

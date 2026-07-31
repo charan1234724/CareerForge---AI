@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>🌎 AI Recommended Jobs & Internships</h1>
+
+<hr>
+
+<form method="GET" class="mb-4">
+
+<div class="row">
+
+<div class="col-md-9">
+
+<input
+type="text"
+name="query"
+class="form-control"
+placeholder="Search Jobs, Internships, Remote Jobs..."
+value="{{ query }}">
+
+</div>
+
+<div class="col-md-3">
+
+<button
+class="btn btn-primary w-100">
+
+🔍 Search
+
+</button>
+
+</div>
+
+</div>
+
+</form>
+
+<div class="mb-4">
+
+<a href="?query=ai engineer india"
+class="btn btn-outline-primary m-1">
+AI Jobs
+</a>
+
+<a href="?query=python developer india"
+class="btn btn-outline-success m-1">
+Python Jobs
+</a>
+
+<a href="?query=data analyst india"
+class="btn btn-outline-info m-1">
+Data Analyst
+</a>
+
+<a href="?query=python internship india"
+class="btn btn-outline-warning m-1">
+Internships
+</a>
+
+<a href="?query=software engineer fresher india"
+class="btn btn-outline-danger m-1">
+Freshers
+</a>
+
+<a href="?query=remote python developer india"
+class="btn btn-outline-dark m-1">
+Remote Jobs
+</a>
+
+</div>
+
+<!-- Statistics -->
+
+<div class="row mb-4">
+
+<div class="col-md-3">
+
+<div class="card shadow border-0 rounded-4 text-center p-4">
+
+<h2>{{ jobs|length }}</h2>
+
+<p class="text-muted">
+
+Jobs Found
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow border-0 rounded-4 text-center p-4">
+
+<h2>{{ jobs.0.score }}%</h2>
+
+<p class="text-muted">
+
+Highest Match
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow border-0 rounded-4 text-center p-4">
+
+<h2>AI</h2>
+
+<p class="text-muted">
+
+Smart Ranking
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card shadow border-0 rounded-4 text-center p-4">
+
+<h2>{{ jobs|length }}</h2>
+
+<p class="text-muted">
+
+Top Jobs
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% for job in jobs %}
+
+<div class="card mt-3">
+
+<div class="card-body">
+{% if job.recommended %}
+
+<div class="badge bg-success mb-3">
+
+⭐ AI TOP PICK
+
+</div>
+
+{% endif %}
+
+<h4>{{ job.title }}</h4>
+
+<div class="d-flex align-items-center mb-3">
+
+<div
+
+class="rounded-circle bg-primary text-white d-flex justify-content-center align-items-center"
+
+style="width:60px;height:60px;font-size:25px;">
+
+{{ job.company|first }}
+
+</div>
+
+<div class="ms-3">
+
+<h5 class="mb-0">
+
+{{ job.company }}
+
+</h5>
+<span class="badge bg-secondary">
+    {{ job.source }}
+</span>
+
+<small class="text-muted">
+
+Verified Employer
+
+</small>
+
+</div>
+
+</div>
+
+<p>
+
+<strong>Location:</strong>
+
+{{ job.location }}
+
+</p>
+<p>
+
+<strong>
+
+Salary:
+
+</strong>
+
+{{ job.salary }}
+
+</p>
+
+<p>
+
+<strong>
+
+Job Type:
+
+</strong>
+
+{{ job.type }}
+
+</p>
+
+<p>
+
+<strong>AI Match Score</strong>
+
+</p>
+
+<div class="progress mt-2 mb-3" style="height:12px;">
+
+<div
+class="progress-bar
+{% if job.score >= 80 %}
+bg-success
+{% elif job.score >= 60 %}
+bg-warning
+{% else %}
+bg-danger
+{% endif %}"
+style="width:{{ job.score }}%;">
+
+{{ job.score }}%
+
+</div>
+
+</div>
+
+<div class="mb-3">
+
+<b>{{ job.score }}%</b> Resume Match
+
+</div>
+
+<a
+href="{% url 'apply_job' %}?title={{ job.title|urlencode }}&company={{ job.company|urlencode }}&url={{ job.url|urlencode }}"
+class="btn btn-primary">
+
+🚀 Apply Now
+
+</a>
+<a
+href="/save-job/?title={{ job.title }}&company={{ job.company }}&url={{ job.url }}"
+class="btn btn-success">
+
+Save Job
+
+</a>
+
+<a
+href="{% url 'skill_gap' %}?job_text={{ job.job_text|urlencode }}"
+class="btn btn-info">
+
+Skill Gap
+
+</a>
+
+<a
+href="/career-analysis/?job_text={{ job.job_text|urlencode }}"
+class="btn btn-danger">
+
+Career Analysis
+
+</a>
+
+<a
+href="/apply-job/?title={{ job.title|urlencode }}&company={{ job.company|urlencode }}&url={{ job.url|urlencode }}"
+class="btn btn-warning">
+
+Track Application
+
+</a>
+
+<a
+href="{% url 'resume_tailor' %}?job_text={{ job.job_text|urlencode }}"
+class="btn btn-dark">
+
+Resume Tailoring
+
+</a>
+
+<a
+href="{% url 'cover_letter' %}?job_id={{ job.id }}"
+class="btn btn-secondary">
+
+Cover Letter
+
+</a>
+
+<a
+href="{% url 'job_details' %}?title={{ job.title|urlencode }}&company={{ job.company|urlencode }}&score={{ job.score }}&job_text={{ job.job_text|urlencode }}"
+class="btn btn-info">
+
+View Details
+
+</a>
+<a
+href="{% url 'company_preparation' %}?company={{ job.company }}"
+class="btn btn-success">
+
+🏢 Prepare
+
+</a>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No matching jobs found.
+
+</div>
+
+{% endfor %}
+
+{% endblock %}

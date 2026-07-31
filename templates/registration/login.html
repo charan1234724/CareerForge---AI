@@ -1,0 +1,205 @@
+{% extends "auth_base.html" %}
+
+{% block content %}
+
+<h3 class="text-center mb-4">
+
+Welcome Back 👋
+
+</h3>
+{% if form.errors %}
+
+<div class="alert alert-danger rounded-4 shadow-sm">
+
+    ❌ Invalid username or password.
+
+</div>
+
+{% endif %}
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+
+<label>
+
+Username
+
+</label>
+
+<input
+type="text"
+name="username"
+class="form-control"
+placeholder="Enter Username"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Password
+
+</label>
+
+<div class="password-wrapper">
+
+    <input
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        required>
+
+    <span
+        class="password-toggle"
+        onclick="togglePassword()">
+
+        <i
+            id="eyeIcon"
+            class="fas fa-eye">
+        </i>
+
+    </span>
+
+</div>
+</div>
+
+<div
+class="d-flex
+justify-content-between
+mb-4">
+
+<div>
+
+<input
+type="checkbox"
+name="remember">
+
+Remember Me
+
+</div>
+
+<a
+href="/password_reset/"
+class="text-warning">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+<button
+id="loginBtn"
+class="btn btn-primary">
+
+Login
+
+</button>
+
+<a
+href="/accounts/google/login/"
+class="btn btn-google">
+
+<i class="fab fa-google"></i>
+
+Continue with Google
+
+</a>
+<div class="text-center mt-4">
+
+Don't have an account?
+
+<a
+href="/signup/"
+class="text-warning">
+
+Create Account
+
+</a>
+
+</div>
+
+</form>
+
+
+<style>
+.password-wrapper{
+
+    position:relative;
+
+}
+
+.password-wrapper input{
+
+    height:60px;
+
+    border-radius:16px;
+
+    padding-right:55px;
+
+}
+
+.password-toggle{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    color:#6c757d;
+
+    font-size:18px;
+
+    transition:.2s;
+
+}
+
+.password-toggle:hover{
+
+    color:#2563eb;
+
+}
+</style>
+
+<script>
+
+function togglePassword(){
+
+const password=document.getElementById("password");
+
+const eye=document.getElementById("eyeIcon");
+
+if(password.type==="password"){
+
+password.type="text";
+
+eye.classList.remove("fa-eye");
+
+eye.classList.add("fa-eye-slash");
+
+}
+
+else{
+
+password.type="password";
+
+eye.classList.remove("fa-eye-slash");
+
+eye.classList.add("fa-eye");
+
+}
+
+}
+
+</script>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="d-flex justify-content-between align-items-center mb-5">
+
+<div>
+
+<h1 class="fw-bold display-4">
+
+🎯 AI Placement Prediction
+
+</h1>
+
+<p class="text-muted fs-5">
+
+AI analyzes your resume and predicts placement readiness.
+
+</p>
+
+</div>
+
+<a
+href="/download-placement-pdf/"
+class="btn btn-danger btn-lg rounded-pill">
+
+📄 Download Report
+
+</a>
+
+</div>
+
+<div class="row">
+
+<div class="col-lg-4 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-5 h-100">
+
+<div
+class="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+
+style="width:190px;height:190px;border:12px solid #2563eb;font-size:55px;font-weight:bold;color:#2563eb;">
+
+{{ placement_score }}%
+
+</div>
+
+<h2 class="fw-bold">
+
+Placement Score
+
+</h2>
+
+<span class="badge bg-success fs-5 px-4 py-2 mt-3">
+
+{{ status }}
+
+</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-8">
+
+<div class="card border-0 shadow-lg rounded-4 p-4">
+
+<h2 class="fw-bold mb-4">
+
+📊 AI Analytics
+
+</h2>
+
+<label class="fw-bold">
+
+Hiring Probability
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div
+class="progress-bar bg-success"
+
+style="width:{{ hiring_probability }}%;">
+
+{{ hiring_probability }}%
+
+</div>
+
+</div>
+
+<label class="fw-bold">
+
+Skill Readiness
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div
+class="progress-bar bg-warning"
+
+style="width:{{ skill_score }}%;">
+
+{{ skill_score }}%
+
+</div>
+
+</div>
+
+<label class="fw-bold">
+
+Interview Readiness
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div
+class="progress-bar bg-primary"
+
+style="width:{{ interview_score }}%;">
+
+{{ interview_score }}%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card shadow-lg border-0 rounded-4 mt-5">
+
+<div class="card-body p-5">
+
+<h2 class="fw-bold mb-4">
+
+🤖 AI Prediction Report
+
+</h2>
+
+<div class="alert alert-primary">
+
+<pre style="white-space:pre-wrap;font-size:16px;border:0;background:transparent;">
+
+{{ result }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

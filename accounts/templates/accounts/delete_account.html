@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<div class="card shadow rounded-4">
+
+<div class="card-body text-center p-5">
+
+<h2 class="text-danger">
+
+⚠ Delete Account
+
+</h2>
+
+<p class="mt-3">
+
+This action is permanent.
+
+All your resumes, profile information, applications and saved data will be deleted.
+
+</p>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<button
+class="btn btn-danger btn-lg">
+
+Delete My Account
+
+</button>
+
+<a
+href="{% url 'settings' %}"
+class="btn btn-secondary">
+
+Cancel
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

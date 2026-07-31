@@ -1,0 +1,389 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-primary fs-6 px-3 py-2 mb-3">
+
+📂 AI Application Tracker
+
+</span>
+
+<h1 class="display-4 fw-bold">
+
+My Applications
+
+</h1>
+
+<p class="lead text-muted">
+
+Track every application, interview, offer and hiring progress from one place.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/real-jobs/" class="btn btn-primary btn-lg rounded-pill me-2">
+
+💼 Explore Jobs
+
+</a>
+
+<a href="/dashboard/" class="btn btn-dark btn-lg rounded-pill">
+
+🏠 Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+style="width:220px;height:220px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+font-size:70px;
+box-shadow:0 20px 40px rgba(37,99,235,.25);">
+
+📂
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= ANALYTICS ================= -->
+
+<div class="row mb-5">
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>{{ applications|length }}</h2>
+
+<h6>Total Applications</h6>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>🎤</h2>
+
+<h6>Interview Ready</h6>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>AI</h2>
+
+<h6>Career Tracking</h6>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>24/7</h2>
+
+<h6>Status Updates</h6>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= APPLICATIONS ================= -->
+
+{% for app in applications %}
+
+<div class="card border-0 shadow-lg rounded-5 mb-4">
+
+<div class="card-body p-4">
+
+<div class="row">
+
+<div class="col-lg-8">
+
+<div class="d-flex align-items-center mb-3">
+
+<div
+class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+style="width:60px;height:60px;font-size:24px;">
+
+{{ app.company|first }}
+
+</div>
+
+<div class="ms-3">
+
+<h3 class="mb-1">
+
+{{ app.title }}
+
+</h3>
+
+<h6 class="text-muted">
+
+{{ app.company }}
+
+</h6>
+
+</div>
+
+</div>
+
+{% if app.status == "Offer" %}
+
+<span class="badge bg-success fs-6">
+
+🎉 Offer Received
+
+</span>
+
+{% elif app.status == "Interview" %}
+
+<span class="badge bg-warning fs-6">
+
+🎤 Interview
+
+</span>
+
+{% elif app.status == "Shortlisted" %}
+
+<span class="badge bg-info fs-6">
+
+📋 Shortlisted
+
+</span>
+
+{% elif app.status == "Rejected" %}
+
+<span class="badge bg-danger fs-6">
+
+❌ Rejected
+
+</span>
+
+{% elif app.status == "Withdrawn" %}
+
+<span class="badge bg-dark fs-6">
+
+🚫 Withdrawn
+
+</span>
+
+{% else %}
+
+<span class="badge bg-primary fs-6">
+
+📨 Applied
+
+</span>
+
+{% endif %}
+
+<p class="mt-3">
+
+<b>Applied On:</b>
+
+{{ app.applied_at }}
+
+</p>
+
+<div class="mt-4">
+
+<div class="progress" style="height:12px;">
+
+{% if app.status == "Applied" %}
+
+<div class="progress-bar bg-primary" style="width:20%;"></div>
+
+{% elif app.status == "Shortlisted" %}
+
+<div class="progress-bar bg-info" style="width:40%;"></div>
+
+{% elif app.status == "Interview" %}
+
+<div class="progress-bar bg-warning" style="width:70%;"></div>
+
+{% elif app.status == "Offer" %}
+
+<div class="progress-bar bg-success" style="width:100%;"></div>
+
+{% else %}
+
+<div class="progress-bar bg-danger" style="width:100%;"></div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<div class="alert alert-primary mt-4 rounded-4">
+
+🤖 <b>AI Recommendation</b>
+
+Practice interview questions, revise your projects and update your portfolio before the next hiring stage.
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<label class="fw-bold mb-2">
+
+Update Status
+
+</label>
+
+<select
+id="status{{ app.id }}"
+class="form-select mb-3">
+
+<option>Applied</option>
+
+<option>Shortlisted</option>
+
+<option>Interview</option>
+
+<option>Offer</option>
+
+<option>Rejected</option>
+
+<option>Withdrawn</option>
+
+</select>
+
+<div class="d-grid gap-2">
+
+<a
+href="#"
+onclick="window.location='/update-application/{{ app.id }}/?status='+document.getElementById('status{{ app.id }}').value;"
+class="btn btn-success rounded-pill">
+
+✅ Update Status
+
+</a>
+
+<a
+href="{{ app.url }}"
+target="_blank"
+class="btn btn-primary rounded-pill">
+
+💼 View Job
+
+</a>
+
+<a
+href="/resume-tailoring/"
+class="btn btn-warning rounded-pill">
+
+📄 Tailor Resume
+
+</a>
+
+<a
+href="/interview-prep/"
+class="btn btn-info rounded-pill">
+
+🎤 Interview Prep
+
+</a>
+
+<a
+href="/delete-application/{{ app.id }}/"
+class="btn btn-danger rounded-pill">
+
+🗑 Delete
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="card border-0 shadow rounded-5">
+
+<div class="card-body text-center p-5">
+
+<div style="font-size:80px;">
+
+📂
+
+</div>
+
+<h2>
+
+No Applications Yet
+
+</h2>
+
+<p class="text-muted">
+
+Start applying for jobs and track your progress here.
+
+</p>
+
+<a href="/real-jobs/" class="btn btn-primary btn-lg rounded-pill">
+
+🌍 Explore Jobs
+
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

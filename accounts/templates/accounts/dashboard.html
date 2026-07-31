@@ -1,0 +1,1152 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card shadow-lg border-0 mb-4">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h5 class="text-primary">
+
+{{ greeting }}
+
+</h5>
+
+<h1 class="fw-bold">
+
+{{ display_name }}
+
+</h1>
+
+<p class="text-muted">
+
+Welcome back to CareerForge AI.
+
+Let's move one step closer to your dream career today.
+
+</p>
+
+</div>
+
+<div class="col-lg-4 text-end">
+
+{% if profile.profile_picture %}
+
+<img
+    src="{{ profile.profile_picture.url }}"
+    alt="Profile Picture"
+    class="rounded-circle shadow"
+    style="
+        width:120px;
+        height:120px;
+        object-fit:cover;
+        border:4px solid #2563eb;
+    "
+>
+
+{% else %}
+
+<i
+    class="fas fa-user-graduate"
+    style="font-size:90px;color:#2563eb;">
+</i>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<h3 class="fw-bold mb-3">
+
+📊 Career Overview
+
+</h3>
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<i
+class="fas fa-file-alt text-primary"
+style="font-size:45px;"></i>
+
+<h5 class="mt-3">
+
+Resume Score
+
+</h5>
+
+<h2 class="fw-bold">
+
+{{ resume_score }}%
+
+</h2>
+
+<div class="progress">
+
+<div
+class="progress-bar bg-primary"
+style="width:{{ resume_score }}%;">
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<i
+class="fas fa-briefcase text-success"
+style="font-size:45px;"></i>
+
+<h5 class="mt-3">
+
+Applications
+
+</h5>
+
+<h2 class="fw-bold">
+
+{{ applications }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<i
+class="fas fa-bookmark text-warning"
+style="font-size:45px;"></i>
+
+<h5 class="mt-3">
+
+Saved Jobs
+
+</h5>
+
+<h2 class="fw-bold">
+
+{{ saved_jobs }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<i
+class="fas fa-code text-danger"
+style="font-size:45px;"></i>
+
+<h5 class="mt-3">
+
+Skills
+
+</h5>
+
+<h2 class="fw-bold">
+
+{{ skills }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="row">
+    <div class="col-md-3">
+    <div class="card p-4">
+        <h4>🎯 Placement Readiness</h4>
+        <h2>{{ placement_score }}%</h2>
+    </div>
+</div>
+
+    <div class="col-md-3">
+    <div class="card p-4">
+        <h4>🚀 Top Career</h4>
+        <h6>{{ top_career }}</h6>
+    </div>
+</div>
+
+    <div class="col-md-3">
+        <div class="card p-4">
+            <h4>📄 Resume</h4>
+
+            {% if resume %}
+                <h5 class="text-success">
+                    Uploaded
+                </h5>
+            {% else %}
+                <h5 class="text-danger">
+                    Not Uploaded
+                </h5>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-3">
+
+    <div class="card p-4">
+
+        <h4>
+            🎯 Placement Readiness
+        </h4>
+
+        <h2>
+            {{ placement_score }}%
+        </h2>
+
+    </div>
+
+</div>
+
+    <div class="col-md-3">
+
+    <div class="card p-4">
+
+        <h4>
+            🚀 Top Career
+        </h4>
+
+        <h6>
+            {{ top_career }}
+        </h6>
+
+    </div>
+
+</div>
+    <div class="col-md-3">
+        <div class="card p-4">
+            <h4>📌 Saved Jobs</h4>
+            <h2>{{ saved_jobs_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-4">
+            <h4>💼 Applications</h4>
+            <h2>{{ applications_count }}</h2>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card p-4">
+            <h4>🛠 Skills</h4>
+            <h2>{{ skills_count }}</h2>
+        </div>
+    </div>
+
+</div>
+
+{% if result %}
+
+<hr class="my-4">
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>📊 Resume Score</h4>
+
+            <h1 class="display-5">
+
+                {{ result.score }}/100
+
+            </h1>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card p-4">
+
+            <h4>🎯 Career Paths</h4>
+
+            {% for path in result.career_paths %}
+
+                <span class="badge bg-primary me-2">
+
+                    {{ path }}
+
+                </span>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+<hr class="my-4">
+
+<h2>⚡ Quick Actions</h2>
+
+<div class="row g-3">
+
+    <div class="col-md-3">
+        <a href="/upload-resume/" class="btn btn-primary w-100">
+            📄 Upload Resume
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/resume-summary/" class="btn btn-success w-100">
+            📊 Resume Analysis
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/resume-improvement/" class="btn btn-dark w-100">
+            🚀 Resume Improvement
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/career-analysis/" class="btn btn-info w-100">
+            🎯 Career Copilot
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/interview-prep/" class="btn btn-primary w-100">
+            🎤 Interview Prep
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/interview-feedback/" class="btn btn-success w-100">
+            🤖 Mock Interview
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/real-jobs/" class="btn btn-warning w-100">
+            💼 Find Jobs
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/placement-prediction/" class="btn btn-danger w-100">
+            🎯 Placement Prediction
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/saved-jobs/" class="btn btn-secondary w-100">
+            📌 Saved Jobs
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/applications/" class="btn btn-secondary w-100">
+            📄 Applications
+        </a>
+    </div>
+
+    <div class="col-md-3">
+        <a href="/delete-resume/" class="btn btn-outline-danger w-100">
+            🗑 Delete Resume
+        </a>
+    </div>
+    <div class="col-md-3 mt-3">
+
+    <a
+    href="/career-roadmap/"
+    class="btn btn-primary w-100">
+
+    🗺 AI Career Roadmap
+
+    </a>
+
+</div>
+    <div class="col-md-3 mt-3">
+
+    <a
+href="/portfolio-generator/"
+class="btn btn-primary w-100">
+
+🌐 AI Portfolio
+
+</a>
+
+</div>
+    <div class="col-md-3 mt-3">
+
+    <a
+href="/recruiter-ai/"
+class="btn btn-danger w-100">
+
+🤖 Recruiter AI
+
+</a>
+
+</div>
+    <div class="col-md-3 mt-3">
+
+        <a
+href="/profile/"
+class="btn btn-info w-100">
+
+👤 Career Profile
+
+</a>
+
+</div>
+
+</div>
+{% if result %}
+{% if placement %}
+
+<hr>
+
+<div class="card shadow mt-4">
+
+<div class="card-body">
+
+<h3>
+
+🎯 AI Placement Readiness
+
+</h3>
+
+<h1>
+
+{{ placement.score }}%
+
+</h1>
+<p class="text-muted">
+
+Overall Career Readiness Score
+
+</p>
+<div
+class="progress mb-4"
+style="height:20px;border-radius:20px;">
+
+<div
+class="progress-bar
+bg-success
+progress-bar-striped
+progress-bar-animated"style="width: {{ placement.score }}%;">
+
+{{ placement.score }}%
+
+</div>
+
+</div>
+<hr class="my-4">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h3>
+
+🎯 Today's Goals
+
+</h3>
+
+{% for goal in goals %}
+
+<div class="d-flex justify-content-between mb-3">
+
+<div>
+
+{{ goal.title }}
+
+</div>
+
+<div>
+
+{% if goal.done %}
+
+<span class="badge bg-success">
+
+Completed
+
+</span>
+
+{% else %}
+
+<span class="badge bg-warning">
+
+Pending
+
+</span>
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+<div class="progress mt-4">
+
+<div
+class="progress-bar bg-success"
+style="width: {{ goal_progress }}%;">
+
+{{ goal_progress }}%
+
+</div>
+
+</div>
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/upload-resume/"
+class="btn btn-primary w-100">
+
+📄 Upload Resume
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/real-jobs/"
+class="btn btn-success w-100">
+
+💼 Find Jobs
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/interview-prep/"
+class="btn btn-warning w-100">
+
+🎤 Interview Prep
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/profile/"
+class="btn btn-info w-100">
+
+👤 My Profile
+
+</a>
+
+</div>
+
+</div>
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<div class="card border-0 bg-light">
+
+<div class="card-body">
+
+<h2>
+
+📄
+
+</h2>
+
+<!-- ATS Score from Score Engine -->
+
+<h5>
+
+ATS
+
+</h5>
+
+<h4>
+
+{{ ats_score }}%
+
+</h4>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 bg-light">
+
+<div class="card-body">
+
+<h2>
+
+📝
+
+</h2>
+
+<!-- Resume Score from Score Engine -->
+
+<h5>
+
+Resume
+
+</h5>
+
+<h4>
+
+{{ resume_score }}%
+
+</h4>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 bg-light">
+
+<div class="card-body">
+
+<h2>
+
+💼
+
+</h2>
+
+<!-- Placement Score from Score Engine -->
+
+<h5>
+
+Placement
+
+</h5>
+
+<h4>
+
+{{ placement_score }}%
+
+</h4>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 bg-light">
+
+<div class="card-body">
+
+<h2>
+
+🎤
+
+</h2>
+
+<!-- Career Score from Score Engine -->
+
+<h5>
+
+Career
+
+</h5>
+
+<h4>
+
+{{ career_score }}%
+
+</h4>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<h5>
+
+💡 AI Recommendations
+
+</h5>
+
+<div class="list-group">
+
+{% for item in placement.recommendations %}
+
+<div class="list-group-item">
+
+✅ {{ item }}
+
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+</div>
+
+{% endif %}
+
+<hr class="my-4">
+
+<div class="card shadow-lg border-0 mt-4">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold mb-4">
+
+🛣 AI Career Roadmap
+
+</h3>
+
+<div class="timeline">
+
+{% for step in result.roadmap %}
+
+<div class="d-flex mb-4">
+
+<div
+class="me-4
+text-center">
+
+<div
+style="
+width:55px;
+height:55px;
+border-radius:50%;
+background:#2563eb;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+">
+
+{{ step.month }}
+
+</div>
+
+</div>
+
+<div
+class="card
+border-0
+shadow-sm
+flex-grow-1">
+
+<div class="card-body">
+
+<h5>
+
+Month {{ step.month }}
+
+</h5>
+
+<h4 class="text-primary">
+
+{{ step.title }}
+
+</h4>
+
+<p class="text-muted">
+
+Recommended AI learning milestone.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+{% endif %}
+
+<hr class="my-5">
+
+<div class="row">
+
+<div class="col-lg-8">
+
+<div class="card shadow-lg border-0 mb-4">
+
+<div class="card-body">
+
+<h3 class="fw-bold mb-4">
+
+💼 Recent Applications
+
+</h3>
+
+{% for app in recent_applications %}
+
+<div class="card border-0 shadow-sm mb-3">
+
+<div class="card-body">
+
+<div class="row align-items-center">
+
+<div class="col-md-7">
+
+<h5 class="fw-bold mb-1">
+
+{{ app.title }}
+
+</h5>
+
+<p class="text-muted mb-1">
+
+🏢 {{ app.company }}
+
+</p>
+
+<small class="text-secondary">
+
+📅 Applied on
+
+{{ app.applied_at|date:"d M Y" }}
+
+</small>
+
+</div>
+
+<div class="col-md-3 text-center">
+
+{% if app.status == "Offer" %}
+
+<span class="badge bg-success p-2">
+
+🎉 Offer
+
+</span>
+
+{% elif app.status == "Interview" %}
+
+<span class="badge bg-warning p-2">
+
+🎤 Interview
+
+</span>
+
+{% elif app.status == "Rejected" %}
+
+<span class="badge bg-danger p-2">
+
+❌ Rejected
+
+</span>
+
+{% else %}
+
+<span class="badge bg-primary p-2">
+
+📄 Applied
+
+</span>
+
+{% endif %}
+
+</div>
+
+<div class="col-md-2 text-end">
+
+<a
+href="/applications/"
+class="btn btn-outline-primary btn-sm">
+
+View
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-info">
+
+No applications found.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card shadow border-0 mb-4">
+
+<div class="card-body">
+
+<h3>
+
+🏆 Achievements
+
+</h3>
+
+<hr>
+
+<span class="badge bg-primary p-3 mb-2 w-100">
+
+📄 Resume Uploaded
+
+</span>
+
+<br>
+
+<span class="badge bg-success p-3 mb-2 w-100">
+
+🚀 Career Explorer
+
+</span>
+
+<br>
+
+{% if placement_score >= 80 %}
+
+<span class="badge bg-warning p-3 mb-2 w-100">
+
+⭐ ATS Expert
+
+</span>
+
+<br>
+
+{% endif %}
+
+{% if applications_count >= 5 %}
+
+<span class="badge bg-danger p-3 mb-2 w-100">
+
+💼 Job Hunter
+
+</span>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="card shadow-lg border-0 mt-4">
+
+<div class="card-body">
+
+<h3 class="fw-bold mb-4">
+
+📅 Activity Timeline
+
+</h3>
+
+{% for item in recent_activity %}
+
+<div class="d-flex mb-4">
+
+<div class="me-3">
+
+<div
+style="
+width:18px;
+height:18px;
+background:#2563eb;
+border-radius:50%;
+margin-top:6px;
+">
+
+</div>
+
+</div>
+
+<div class="flex-grow-1">
+
+<h5 class="fw-bold">
+
+{{ item.action }}
+
+</h5>
+
+<p class="text-muted mb-1">
+
+{{ item.description }}
+
+</p>
+
+<small class="text-secondary">
+
+🕒 {{ item.created_at }}
+
+</small>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-info">
+
+No recent activity available.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+<div class="card border-0 shadow-lg mt-4">
+
+<div class="card-body text-center p-5">
+
+<h2>
+
+🚀 Daily Motivation
+
+</h2>
+
+<div
+style="font-size:70px;">
+
+🎯
+
+</div>
+
+<h4 class="mt-3">
+
+Every application is one step closer to your dream career.
+
+</h4>
+
+<p class="text-muted">
+
+Consistency beats perfection.
+
+Improve your skills,
+
+build projects,
+
+practice interviews,
+
+and never stop applying.
+
+</p>
+
+<hr>
+
+<h5 class="text-primary">
+
+CareerForge AI
+
+</h5>
+
+</div>
+
+</div>
+<footer class="text-center mt-5">
+
+<hr>
+
+<p class="text-muted">
+
+🚀 CareerForge AI
+
+</p>
+
+<small class="text-secondary">
+
+AI Powered Career Development Platform
+
+</small>
+
+<br>
+
+<small>
+
+Version 1.0
+
+</small>
+
+</footer>
+{% endblock %}

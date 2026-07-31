@@ -1,0 +1,149 @@
+{% extends "auth_base.html" %}
+
+{% block content %}
+
+<h3 class="text-center mb-4">
+
+Create Account
+
+</h3>
+{% if form.errors %}
+
+<div class="alert alert-danger py-2 mb-3">
+
+<ul class="mb-0">
+
+{% for field in form %}
+
+{% for error in field.errors %}
+
+<li>
+
+{{ error }}
+
+</li>
+
+{% endfor %}
+
+{% endfor %}
+
+{% for error in form.non_field_errors %}
+
+<li>
+
+{{ error }}
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+
+<label>
+
+Username
+
+</label>
+
+{{ form.username }}
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Email
+
+</label>
+
+{{ form.email }}
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Password
+
+</label>
+
+{{ form.password1 }}
+<small class="text-light">
+
+Password must contain:
+
+<ul class="mt-2">
+
+<li>Minimum 8 characters</li>
+
+<li>One uppercase letter</li>
+
+<li>One lowercase letter</li>
+
+<li>One number</li>
+
+<li>One special character</li>
+
+</ul>
+
+</small>
+
+</div>
+
+<div class="mb-3">
+
+<label>
+
+Confirm Password
+
+</label>
+
+{{ form.password2 }}
+
+</div>
+
+<button
+class="btn btn-primary">
+
+Create Account
+
+</button>
+
+<a
+href="/accounts/google/login/"
+class="btn btn-google">
+
+<i class="fab fa-google"></i>
+
+Continue with Google
+
+</a>
+<div class="text-center mt-4">
+
+Already have an account?
+
+<a
+href="{% url 'login' %}"
+class="text-warning">
+
+Login
+
+</a>
+
+</div>
+
+</form>
+
+{% endblock %}

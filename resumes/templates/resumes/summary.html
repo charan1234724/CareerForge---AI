@@ -1,0 +1,1160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="row">
+
+<div class="col-lg-12">
+
+<div class="card border-0 shadow-lg mb-4">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h1 class="display-5 fw-bold">
+
+📄 Resume Analytics Dashboard
+
+</h1>
+
+<p class="text-muted lead">
+
+Analyze your resume using AI, improve ATS compatibility,
+discover strengths, identify missing skills,
+and become placement ready.
+
+</p>
+
+<h3 class="mt-4">
+
+{{ resume.name }}
+
+</h3>
+
+</div>
+
+<div class="col-lg-4 text-end">
+
+<a
+href="/download-resume-pdf/"
+class="btn btn-danger btn-lg mb-3">
+
+📄 Download Report
+
+</a>
+
+<br>
+
+<a
+href="/resume-improvement/"
+class="btn btn-primary">
+
+🚀 Improve Resume
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="alert alert-success border-0 shadow mb-4">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<div>
+
+<h4 class="mb-1">
+
+🎉 Resume Successfully Analyzed
+
+</h4>
+
+<p class="mb-0">
+
+Your resume is ready for AI analysis, ATS evaluation, and career recommendations.
+
+</p>
+
+</div>
+
+<div style="font-size:60px;">
+
+✅
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Analytics Cards ================= -->
+
+<div class="row">
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<div style="font-size:45px;">
+
+🎯
+
+</div>
+
+<h5 class="mt-3">
+
+ATS Score
+
+</h5>
+
+<h2 class="fw-bold text-success">
+
+{{ ats_score }}
+
+%
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<div style="font-size:45px;">
+
+🛠
+
+</div>
+
+<h5 class="mt-3">
+
+Skills
+
+</h5>
+
+<h2>
+
+{{ resume.skills.count }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<div style="font-size:45px;">
+
+🚀
+
+</div>
+
+<h5 class="mt-3">
+
+Projects
+
+</h5>
+
+<h2>
+
+{{ projects|length }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 col-md-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body text-center">
+
+<div style="font-size:45px;">
+
+💼
+
+</div>
+
+<h5 class="mt-3">
+
+Experience
+
+</h5>
+
+<h2>
+
+{{ experience|length }}
+
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Resume Health ================= -->
+
+<div class="card shadow border-0 mb-4">
+
+<div class="card-body">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<h3>
+
+❤️ Resume Health Score
+
+</h3>
+
+<p class="text-muted">
+
+Your resume quality based on ATS,
+structure and extracted information.
+
+</p>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="progress"
+
+style="height:22px;">
+
+<div
+
+class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+
+style="width:{{ ats_score }}%;">
+
+{{ ats_score }}%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Skills ================= -->
+
+<div class="row">
+
+<div class="col-lg-5 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body">
+
+<h3 class="fw-bold mb-4">
+
+🛠 Technical Skills
+
+</h3>
+
+{% for skill in resume.skills.all %}
+
+<span
+class="badge rounded-pill bg-primary fs-6 px-3 py-2 m-2">
+
+{{ skill.name }}
+
+</span>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No skills detected.
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h5>
+
+📊 Skills Extracted
+
+</h5>
+
+<h2 class="text-primary">
+
+{{ resume.skills.count }}
+
+</h2>
+
+<p class="text-muted">
+
+AI identified these skills from your resume.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= AI Analysis ================= -->
+
+<div class="col-lg-7 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+🤖 AI Resume Analysis
+
+</h3>
+
+<p class="text-muted">
+
+Your resume has been analyzed successfully.
+
+</p>
+
+<hr>
+
+<div class="alert alert-success">
+
+<h5>
+
+✅ Strengths
+
+</h5>
+
+<ul>
+
+<li>
+
+Skills successfully extracted.
+
+</li>
+
+<li>
+
+Resume uploaded successfully.
+
+</li>
+
+<li>
+
+Education detected.
+
+</li>
+
+<li>
+
+Projects identified.
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="alert alert-warning">
+
+<h5>
+
+⚠ Improvement Areas
+
+</h5>
+
+<ul>
+
+<li>
+
+Add measurable achievements.
+
+</li>
+
+<li>
+
+Include GitHub & LinkedIn.
+
+</li>
+
+<li>
+
+Add certifications.
+
+</li>
+
+<li>
+
+Improve ATS keywords.
+
+</li>
+
+</ul>
+
+</div>
+
+<div class="alert alert-info">
+
+<h5>
+
+💡 AI Summary
+
+</h5>
+
+<pre
+style="
+white-space:pre-wrap;
+font-family:inherit;
+margin-bottom:0;
+">
+
+{{ ai_analysis }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Education & Experience ================= -->
+
+<div class="row">
+
+<!-- Education -->
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+🎓 Education
+
+</h3>
+
+<hr>
+
+{% for item in education %}
+
+<div class="d-flex mb-4">
+
+<div class="me-3">
+
+<div
+style="
+width:18px;
+height:18px;
+background:#2563eb;
+border-radius:50%;
+margin-top:6px;
+">
+
+</div>
+
+</div>
+
+<div>
+
+<h5 class="mb-1">
+
+{{ item }}
+
+</h5>
+
+<p class="text-muted">
+
+Education detected by AI
+
+</p>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No education details found.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Experience -->
+
+<div class="col-lg-6 mb-4">
+
+<div class="card shadow border-0 h-100">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+💼 Experience
+
+</h3>
+
+<hr>
+
+{% for item in experience %}
+
+<div class="card bg-light border-0 mb-3">
+
+<div class="card-body">
+
+<h5>
+
+{{ item }}
+
+</h5>
+
+<p class="text-muted">
+
+Professional Experience
+
+</p>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-info">
+
+Fresher / No experience found.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Projects ================= -->
+
+<div class="card shadow border-0 mb-4">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+🚀 Projects
+
+</h3>
+
+<hr>
+
+<div class="row">
+
+{% for item in projects %}
+
+<div class="col-lg-6 mb-3">
+
+<div class="card border-0 bg-light h-100">
+
+<div class="card-body">
+
+<div style="font-size:35px;">
+
+💻
+
+</div>
+
+<h5>
+
+{{ item }}
+
+</h5>
+
+<p class="text-muted">
+
+AI detected project from your resume.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No projects detected.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Resume Analytics ================= -->
+
+<div class="card shadow-lg border-0 mb-4">
+
+    <div class="card-body p-4">
+
+        <div class="row">
+
+            <!-- ================= Left Circle ================= -->
+
+            <div class="col-lg-4 text-center">
+
+                <div
+                    class="rounded-circle mx-auto d-flex align-items-center justify-content-center shadow"
+                    style="
+                    width:180px;
+                    height:180px;
+                    border:12px solid #198754;
+                    background:#f8fff9;
+                    font-size:42px;
+                    font-weight:bold;
+                    color:#198754;
+                    ">
+
+                    {{ ats_score }}%
+
+                </div>
+
+                <h3 class="mt-4 fw-bold">
+
+                    🎯 ATS Score
+
+                </h3>
+
+                <p class="text-muted">
+
+                    AI Resume Compatibility Score
+
+                </p>
+
+            </div>
+
+            <!-- ================= Right Progress Bars ================= -->
+
+            <div class="col-lg-8">
+
+                <h3 class="fw-bold mb-4">
+
+                    📊 Resume Analytics
+
+                </h3>
+
+                <!-- ATS -->
+
+                <label class="fw-bold">
+
+                    ATS Score
+
+                </label>
+
+                <div class="progress mb-3" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                        style="width:{{ ats_score }}%;">
+
+                        {{ ats_score }}%
+
+                    </div>
+
+                </div>
+
+                <!-- Resume -->
+
+                <label class="fw-bold">
+
+                    Resume Score
+
+                </label>
+
+                <div class="progress mb-3" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+                        style="width:{{ resume_score }}%;">
+
+                        {{ resume_score }}%
+
+                    </div>
+
+                </div>
+
+                <!-- Placement -->
+
+                <label class="fw-bold">
+
+                    Placement Readiness
+
+                </label>
+
+                <div class="progress mb-3" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                        style="width:{{ placement_score }}%;">
+
+                        {{ placement_score }}%
+
+                    </div>
+
+                </div>
+
+                <!-- Career -->
+
+                <label class="fw-bold">
+
+                    Career Score
+
+                </label>
+
+                <div class="progress mb-3" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
+                        style="width:{{ career_score }}%;">
+
+                        {{ career_score }}%
+
+                    </div>
+
+                </div>
+
+                <!-- Resume Health -->
+
+                <label class="fw-bold">
+
+                    Resume Health
+
+                </label>
+
+                <div class="progress mb-3" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                        style="width:{{ health_score }}%;">
+
+                        {{ health_score }}%
+
+                    </div>
+
+                </div>
+
+                <!-- Profile -->
+
+                <label class="fw-bold">
+
+                    Profile Completion
+
+                </label>
+
+                <div class="progress mb-4" style="height:22px;">
+
+                    <div
+                        class="progress-bar bg-secondary progress-bar-striped progress-bar-animated"
+                        style="width:{{ profile_completion }}%;">
+
+                        {{ profile_completion }}%
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <!-- ================= Analytics Cards ================= -->
+
+        <div class="row text-center">
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card border-success shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+
+                            Resume Quality
+
+                        </h6>
+
+                        <h2 class="text-success">
+
+                            {{ resume_score }}%
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card border-primary shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+
+                            Skill Match
+
+                        </h6>
+
+                        <h2 class="text-primary">
+
+                            {{ skill_match }}%
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card border-warning shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+
+                            Projects
+
+                        </h6>
+
+                        <h2 class="text-warning">
+
+                            {{ projects|length }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card border-danger shadow-sm h-100">
+
+                    <div class="card-body">
+
+                        <h6 class="text-muted">
+
+                            Experience
+
+                        </h6>
+
+                        <h2 class="text-danger">
+
+                            {{ experience|length }}
+
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= ATS Feedback ================= -->
+
+<div class="card shadow border-0 mb-4">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+💡 ATS Recommendations
+
+</h3>
+
+<hr>
+
+<div class="row">
+
+{% for item in ats_feedback %}
+
+<div class="col-lg-6 mb-3">
+
+<div class="card border-0 bg-light h-100">
+
+<div class="card-body">
+
+<h5>
+
+✅ Recommendation
+
+</h5>
+
+<p>
+
+{{ item }}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-success">
+
+Excellent!
+
+Your resume already follows ATS best practices.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Quick Actions ================= -->
+
+<div class="card shadow border-0 mb-5">
+
+<div class="card-body">
+
+<h3 class="fw-bold mb-4">
+
+⚡ Quick Actions
+
+</h3>
+
+<div class="row">
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/resume-improvement/"
+class="btn btn-primary w-100">
+
+🚀 Improve Resume
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/real-jobs/"
+class="btn btn-success w-100">
+
+💼 Find Jobs
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/dashboard/"
+class="btn btn-warning w-100">
+
+📊 Dashboard
+
+</a>
+
+</div>
+
+<div class="col-md-3 mb-3">
+
+<a
+href="/download-resume-pdf/"
+class="btn btn-danger w-100">
+
+📄 Download PDF
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="card shadow border-0 mb-4">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+
+🤖 AI Career Tips
+
+</h3>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="alert alert-primary">
+
+📄 Keep your resume updated every month.
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="alert alert-success">
+
+💼 Apply for at least 5 jobs every week.
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="alert alert-warning">
+
+🎤 Practice mock interviews regularly.
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="alert alert-info">
+
+🚀 Build one strong project every semester.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
+<footer class="text-center mt-5">
+
+<hr>
+
+<h4>
+
+🚀 CareerForge AI
+
+</h4>
+
+<p class="text-muted">
+
+Your AI Career Development Platform
+
+</p>
+
+<small>
+
+Resume Analysis Report generated successfully.
+
+</small>
+
+</footer>
+{% endblock %}

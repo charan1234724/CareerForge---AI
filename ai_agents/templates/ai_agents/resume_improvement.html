@@ -1,0 +1,1162 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+
+<div class="container">
+
+<!-- ================= HEADER ================= -->
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h1 class="display-4 fw-bold">
+
+            🚀 AI Resume Improvement Report
+
+        </h1>
+
+        <p class="text-muted fs-5">
+
+            Improve your resume using AI-powered recommendations.
+
+        </p>
+
+    </div>
+
+    <div>
+
+        <a href="javascript:history.back()" class="btn btn-outline-secondary me-2">
+
+            ← Back
+
+        </a>
+
+        <a href="/dashboard/" class="btn btn-primary">
+
+            🏠 Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+{% if result %}
+
+<!-- ================= HERO CARD ================= -->
+
+<div class="card border-0 shadow-lg rounded-4 mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<!-- Left -->
+
+<div class="col-lg-3 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center shadow-lg"
+
+style="
+width:170px;
+height:170px;
+border:10px solid #2563eb;
+background:linear-gradient(145deg,#ffffff,#f3f8ff);
+font-size:48px;
+font-weight:700;
+color:#2563eb;
+">
+
+{{ result.score }}
+
+</div>
+
+<h3 class="fw-bold mt-3">
+
+Resume Score
+
+</h3>
+
+<span class="badge bg-success fs-6 px-3 py-2">
+
+{{ result.resume_quality }}
+
+</span>
+
+<p class="text-muted mt-3">
+
+AI evaluated your resume based on skills,
+projects,
+ATS compatibility,
+career readiness,
+and industry standards.
+
+</p>
+
+</div>
+<!-- Right -->
+
+<div class="col-lg-9">
+
+<h2 class="fw-bold mb-4">
+
+📊 Resume Analytics
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-6 mb-4">
+
+<div class="card border-0 h-100 shadow-lg"
+
+style="
+background:linear-gradient(135deg,#f0fdf4,#ffffff);
+border-radius:22px;
+">
+
+<div class="card-body text-center p-4">
+
+<div class="mb-3" style="font-size:48px;">
+
+📄
+
+</div>
+
+<h5 class="fw-bold">
+
+Resume Quality
+
+</h5>
+
+<h2 class="text-success fw-bold">
+
+{{ result.resume_quality }}
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Overall Resume Quality
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="card border-0 h-100 shadow-lg"
+
+style="
+background:linear-gradient(135deg,#eef6ff,#ffffff);
+border-radius:22px;
+">
+
+<div class="card-body text-center p-4">
+
+<div class="mb-3" style="font-size:48px;">
+
+🚀
+
+</div>
+
+<h5 class="fw-bold">
+
+Career Readiness
+
+</h5>
+
+<h2 class="text-primary fw-bold">
+
+{{ result.career_readiness }}%
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Placement Readiness
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="card border-0 h-100 shadow-lg"
+
+style="
+background:linear-gradient(135deg,#fff9ec,#ffffff);
+border-radius:22px;
+">
+
+<div class="card-body text-center p-4">
+
+<div class="mb-3" style="font-size:48px;">
+
+🧠
+
+</div>
+
+<h5 class="fw-bold">
+
+Skill Coverage
+
+</h5>
+
+<h2 class="text-warning fw-bold">
+
+{{ result.skill_coverage }}%
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Technical Skill Coverage
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6 mb-4">
+
+<div class="card border-0 h-100 shadow-lg"
+
+style="
+background:linear-gradient(135deg,#fff1f2,#ffffff);
+border-radius:22px;
+">
+
+<div class="card-body text-center p-4">
+
+<div class="mb-3" style="font-size:48px;">
+
+🎯
+
+</div>
+
+<h5 class="fw-bold">
+
+Target Career
+
+</h5>
+
+<h2 class="text-danger fw-bold">
+
+{% if result.career_paths %}
+
+{{ result.career_paths.0 }}
+
+{% else %}
+
+Not Available
+
+{% endif %}
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Recommended Career Path
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+<div class="my-4">
+
+<h4 class="fw-bold">
+
+📈 Score Breakdown
+
+</h4>
+
+<p class="text-muted">
+
+Performance across different resume metrics
+
+</p>
+
+<hr>
+
+</div>
+
+<label>
+
+Resume Score
+
+</label>
+
+<div class="progress mb-3" style="height:20px;">
+
+<div
+class="progress-bar bg-success"
+
+style="width:{{ result.score }}%;">
+
+{{ result.score }}%
+
+</div>
+
+</div>
+
+<label>
+
+Career Readiness
+
+</label>
+
+<div class="progress mb-3" style="height:20px;">
+
+<div
+class="progress-bar bg-primary"
+
+style="width:{{ result.career_readiness }}%;">
+
+{{ result.career_readiness }}%
+
+</div>
+
+</div>
+
+<label>
+
+Skill Coverage
+
+</label>
+
+<div class="progress mb-4" style="height:20px;">
+
+<div
+class="progress-bar bg-warning"
+
+style="width:{{ result.skill_coverage }}%;">
+
+{{ result.skill_coverage }}%
+
+</div>
+
+</div>
+
+
+<div class="alert alert-primary border-0 shadow-sm mt-4">
+
+<h5 class="fw-bold">
+
+🤖 AI Summary
+
+</h5>
+
+<p class="mb-0">
+
+Your resume has been analyzed successfully. Continue improving missing skills to increase your ATS score and placement readiness.
+
+</p>
+
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= AI Skill Analysis ================= -->
+
+<div class="row g-4 mb-5">
+
+    <!-- ================= Strengths ================= -->
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 h-100"
+        style="
+        border-radius:28px;
+        background:linear-gradient(145deg,#ffffff,#f8fffb);
+        box-shadow:0 20px 45px rgba(16,185,129,.15);
+        ">
+
+            <div class="card-body p-5">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div
+                    class="rounded-circle d-flex align-items-center justify-content-center"
+
+                    style="
+                    width:70px;
+                    height:70px;
+                    background:linear-gradient(135deg,#10b981,#34d399);
+                    color:white;
+                    font-size:30px;
+                    box-shadow:0 10px 25px rgba(16,185,129,.35);
+                    ">
+
+                        🚀
+
+                    </div>
+
+                    <div class="ms-3">
+
+                        <h2 class="fw-bold mb-1">
+
+                            Your Strengths
+
+                        </h2>
+
+                        <small class="text-muted">
+
+                            AI detected your strongest technical skills.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                {% for item in result.strengths %}
+
+                    <div
+                    class="d-flex align-items-center justify-content-between mb-3 p-3"
+
+                    style="
+                    background:#f8fffb;
+                    border-radius:18px;
+                    border-left:6px solid #10b981;
+                    ">
+
+                        <div>
+
+                            <h5 class="mb-1">
+
+                                ✔ {{ item }}
+
+                            </h5>
+
+                            <small class="text-muted">
+
+                                Strongly recognized in your resume
+
+                            </small>
+
+                        </div>
+
+                        <span
+                        class="badge rounded-pill"
+
+                        style="
+                        background:#10b981;
+                        padding:10px 18px;
+                        font-size:14px;
+                        ">
+
+                            VERIFIED
+
+                        </span>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="alert alert-warning">
+
+                        No strengths detected.
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= Missing Skills ================= -->
+
+    <div class="col-lg-6">
+
+        <div class="card border-0 h-100"
+
+        style="
+        border-radius:28px;
+        background:linear-gradient(145deg,#ffffff,#fff8f8);
+        box-shadow:0 20px 45px rgba(239,68,68,.15);
+        ">
+
+            <div class="card-body p-5">
+
+                <div class="d-flex align-items-center mb-4">
+
+                    <div
+                    class="rounded-circle d-flex align-items-center justify-content-center"
+
+                    style="
+                    width:70px;
+                    height:70px;
+                    background:linear-gradient(135deg,#ef4444,#f87171);
+                    color:white;
+                    font-size:30px;
+                    box-shadow:0 10px 25px rgba(239,68,68,.35);
+                    ">
+
+                        ⚡
+
+                    </div>
+
+                    <div class="ms-3">
+
+                        <h2 class="fw-bold mb-1">
+
+                            Missing Skills
+
+                        </h2>
+
+                        <small class="text-muted">
+
+                            Skills recommended to improve placement chances.
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <hr>
+
+                {% for item in result.weaknesses %}
+
+                    <div
+                    class="d-flex align-items-center justify-content-between mb-3 p-3"
+
+                    style="
+                    background:#fff9f9;
+                    border-radius:18px;
+                    border-left:6px solid #ef4444;
+                    ">
+
+                        <div>
+
+                            <h5 class="mb-1">
+
+                                {{ item }}
+
+                            </h5>
+
+                            <small class="text-muted">
+
+                                Recommended by AI Career Advisor
+
+                            </small>
+
+                        </div>
+
+                        <span
+                        class="badge rounded-pill"
+
+                        style="
+                        background:#ef4444;
+                        padding:10px 18px;
+                        font-size:14px;
+                        ">
+
+                            IMPROVE
+
+                        </span>
+
+                    </div>
+
+                {% empty %}
+
+                    <div class="alert alert-success">
+
+                        🎉 Excellent! No major skill gaps found.
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= AI Career Intelligence ================= -->
+
+<div class="card border-0 mb-5"
+style="
+border-radius:30px;
+background:linear-gradient(135deg,#ffffff,#f7fbff);
+box-shadow:0 20px 50px rgba(37,99,235,.12);
+">
+
+<div class="card-body p-5">
+
+<div class="d-flex align-items-center mb-5">
+
+<div
+class="rounded-circle d-flex align-items-center justify-content-center"
+
+style="
+width:75px;
+height:75px;
+background:linear-gradient(135deg,#2563eb,#60a5fa);
+color:white;
+font-size:30px;
+">
+
+<i class="fas fa-compass"></i>
+
+</div>
+
+<div class="ms-4">
+
+<h2 class="fw-bold mb-1">
+
+AI Career Intelligence
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Discover the career paths that best match your current skills.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="row">
+
+{% for item in result.career_paths %}
+
+<div class="col-lg-4 mb-4">
+
+<div class="card border-0 h-100"
+
+style="
+border-radius:22px;
+background:white;
+box-shadow:0 15px 35px rgba(37,99,235,.10);
+transition:.3s;
+">
+
+<div class="card-body text-center p-4">
+
+<div
+class="rounded-circle mx-auto mb-4 d-flex align-items-center justify-content-center"
+
+style="
+width:70px;
+height:70px;
+background:#eff6ff;
+color:#2563eb;
+font-size:28px;
+">
+
+<i class="fas fa-briefcase"></i>
+
+</div>
+
+<h4 class="fw-bold">
+
+{{ item }}
+
+</h4>
+
+<p class="text-muted">
+
+Recommended by AI based on your resume.
+
+</p>
+
+<div class="progress mb-3" style="height:10px;">
+
+<div
+class="progress-bar bg-primary"
+
+style="width:92%;">
+
+</div>
+
+</div>
+
+<div class="row text-center mb-4">
+
+<div class="col-6">
+
+<span class="badge bg-success">
+
+High Demand
+
+</span>
+
+</div>
+
+<div class="col-6">
+
+<span class="badge bg-primary">
+
+92% Match
+
+</span>
+
+</div>
+
+</div>
+
+<a
+href="{% url 'career_roadmap_detail' item %}"
+class="btn btn-outline-primary w-100 rounded-pill">
+
+<i class="fas fa-map-marked-alt me-2"></i>
+
+Open {{ item }} Roadmap
+
+</a>
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-12">
+
+<div class="alert alert-warning text-center">
+
+No career recommendation available.
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= AI Recommended Projects ================= -->
+
+<div class="card border-0 mb-5"
+style="
+border-radius:30px;
+background:linear-gradient(135deg,#ffffff,#f9fbff);
+box-shadow:0 20px 50px rgba(37,99,235,.12);
+">
+
+<div class="card-body p-5">
+
+<div class="d-flex align-items-center mb-5">
+
+<div
+class="rounded-circle d-flex align-items-center justify-content-center"
+
+style="
+width:75px;
+height:75px;
+background:linear-gradient(135deg,#10b981,#34d399);
+color:white;
+font-size:30px;
+">
+
+<i class="fas fa-code"></i>
+
+</div>
+
+<div class="ms-4">
+
+<h2 class="fw-bold mb-1">
+
+AI Recommended Projects
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Build these projects to strengthen your portfolio and resume.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="row">
+
+{% for item in result.projects %}
+
+<div class="col-lg-4 mb-4">
+
+<div class="card border-0 h-100"
+
+style="
+border-radius:22px;
+box-shadow:0 15px 35px rgba(16,185,129,.12);
+transition:.3s;
+">
+
+<div class="card-body p-4">
+
+<div class="text-center mb-4">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="
+width:70px;
+height:70px;
+background:#ecfdf5;
+color:#10b981;
+font-size:30px;
+">
+
+<i class="fas fa-laptop-code"></i>
+
+</div>
+
+</div>
+
+<h4 class="fw-bold text-center">
+
+{{ item }}
+
+</h4>
+
+<p class="text-muted text-center">
+
+A portfolio-worthy AI project recommended for your career path.
+
+</p>
+
+<hr>
+
+<div class="d-flex justify-content-between mb-3">
+
+<span class="badge bg-success">
+
+Intermediate
+
+</span>
+
+<span class="badge bg-primary">
+
+10 Days
+
+</span>
+
+</div>
+
+<div class="mb-3">
+
+<span class="badge bg-light text-dark me-1">
+
+Python
+
+</span>
+
+<span class="badge bg-light text-dark me-1">
+
+Django
+
+</span>
+
+<span class="badge bg-light text-dark">
+
+AI
+
+</span>
+
+</div>
+
+<button class="btn btn-success w-100 rounded-pill">
+
+<i class="fas fa-rocket me-2"></i>
+
+Start Project
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-12">
+
+<div class="alert alert-info text-center">
+
+No project recommendations available.
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= AI Recommended Certifications ================= -->
+
+<div class="card border-0 mb-5"
+style="
+border-radius:30px;
+background:linear-gradient(135deg,#ffffff,#fffdf8);
+box-shadow:0 20px 50px rgba(245,158,11,.12);
+">
+
+<div class="card-body p-5">
+
+<div class="d-flex align-items-center mb-5">
+
+<div
+class="rounded-circle d-flex align-items-center justify-content-center"
+
+style="
+width:75px;
+height:75px;
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+color:white;
+font-size:30px;
+">
+
+<i class="fas fa-award"></i>
+
+</div>
+
+<div class="ms-4">
+
+<h2 class="fw-bold mb-1">
+
+AI Recommended Certifications
+
+</h2>
+
+<p class="text-muted mb-0">
+
+Earn industry-recognized certifications to improve your resume.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="row">
+
+{% for item in result.certifications %}
+
+<div class="col-lg-4 mb-4">
+
+<div class="card border-0 h-100"
+
+style="
+border-radius:22px;
+box-shadow:0 15px 35px rgba(245,158,11,.15);
+transition:.3s;
+">
+
+<div class="card-body p-4">
+
+<div class="text-center mb-4">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="
+width:70px;
+height:70px;
+background:#fff7ed;
+color:#f59e0b;
+font-size:30px;
+">
+
+<i class="fas fa-certificate"></i>
+
+</div>
+
+</div>
+
+<h4 class="fw-bold text-center">
+
+{{ item }}
+
+</h4>
+
+<p class="text-muted text-center">
+
+Recommended certification for your target career.
+
+</p>
+
+<hr>
+
+<div class="d-flex justify-content-between mb-3">
+
+<span class="badge bg-success">
+
+Beginner Friendly
+
+</span>
+
+<span class="badge bg-warning text-dark">
+
+6 Weeks
+
+</span>
+
+</div>
+
+<div class="d-flex justify-content-between">
+
+<span class="badge bg-primary">
+
+Certificate
+
+</span>
+
+<span class="badge bg-info text-dark">
+
+Online
+
+</span>
+
+</div>
+
+<button class="btn btn-warning mt-4 w-100 rounded-pill">
+
+<i class="fas fa-graduation-cap me-2"></i>
+
+Start Learning
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-12">
+
+<div class="alert alert-warning text-center">
+
+No certification recommendations available.
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+</div>
+    <div class="card">
+
+        <div class="card-body">
+
+            <h4>
+                💡 Improvement Suggestions
+            </h4>
+
+            <ul>
+
+                {% for item in result.suggestions %}
+
+                <li>{{ item }}</li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+    </div>
+    <div class="card mt-4">
+
+    <div class="card-body">
+
+        <h3>
+            🛣 Career Roadmap
+        </h3>
+
+        {% for step in result.roadmap %}
+
+        <div class="mt-4">
+
+            <h5>
+                Month {{ step.month }}
+                -
+                {{ step.title }}
+            </h5>
+
+            <ul>
+
+                {% for task in step.tasks %}
+
+                <li>
+                    {{ task }}
+                </li>
+
+                {% endfor %}
+
+            </ul>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        No resume uploaded.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

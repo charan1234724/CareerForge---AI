@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+CareerForge AI
+
+</title>
+
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<link
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:'Segoe UI',sans-serif;
+
+background:#f4f7fb;
+
+overflow-x:hidden;
+
+}
+
+/* Sidebar */
+
+.sidebar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:270px;
+
+height:100vh;
+
+background:linear-gradient(
+180deg,
+#0f172a,
+#1e3a8a
+);
+
+color:white;
+
+padding:25px;
+
+overflow-y:auto;
+
+box-shadow:5px 0 20px rgba(0,0,0,.15);
+
+z-index:1000;
+
+}
+
+.logo{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+.logo h2{
+
+font-weight:700;
+
+margin-bottom:5px;
+
+}
+
+.logo p{
+
+font-size:13px;
+
+color:#cbd5e1;
+
+}
+
+.sidebar hr{
+
+border-color:rgba(255,255,255,.15);
+
+margin-bottom:20px;
+
+}
+
+.sidebar a{
+
+display:block;
+
+padding:14px;
+
+margin-bottom:8px;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:12px;
+
+transition:.3s;
+
+font-weight:500;
+
+}
+
+.sidebar a:hover{
+
+background:rgba(255,255,255,.12);
+
+transform:translateX(5px);
+
+}
+.sidebar a.active{
+
+background:#2563eb;
+
+font-weight:bold;
+
+box-shadow:0 8px 18px rgba(37,99,235,.35);
+
+}
+
+.sidebar i{
+
+width:22px;
+
+}
+
+/* Main */
+
+.main{
+
+margin-left:270px;
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+/* ---------- Premium Topbar ---------- */
+
+.topbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:18px 35px;
+
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+margin-bottom:30px;
+
+}
+
+.topbar h3{
+
+color:white;
+
+margin:0;
+
+font-weight:700;
+
+}
+
+.top-buttons{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+}
+
+.top-buttons .btn{
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.top-buttons .btn:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* Content */
+
+.content{
+
+padding:35px;
+
+flex:1;
+
+}
+
+/* Cards */
+
+.card{
+
+border:none;
+
+border-radius:20px;
+
+box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.12);
+
+}
+
+/* Buttons */
+
+.btn{
+
+border-radius:12px;
+
+font-weight:600;
+
+}
+
+/* Footer */
+
+.footer{
+
+background:white;
+
+padding:20px;
+
+text-align:center;
+
+color:#666;
+
+font-size:14px;
+
+border-top:1px solid #eee;
+
+}
+
+/* Mobile */
+
+@media(max-width:992px){
+
+.sidebar{
+
+width:100%;
+
+height:auto;
+
+position:relative;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.topbar{
+
+padding:15px;
+
+}
+
+.content{
+
+padding:20px;
+
+}
+
+}
+.btn{
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 8px 18px rgba(37,99,235,.3);
+
+}
+.card{
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 18px 35px rgba(37,99,235,.15);
+
+}
+
+.badge{
+
+transition:.3s;
+
+}
+
+.badge:hover{
+
+transform:scale(1.08);
+
+}
+
+.progress-bar{
+
+transition:width 1.2s ease;
+
+}
+.list-group-item{
+
+background:transparent;
+
+font-size:17px;
+
+padding:14px 0;
+
+}
+
+.card{
+
+transition:.35s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 40px rgba(37,99,235,.18);
+
+}
+
+.badge{
+
+padding:10px 18px;
+
+border-radius:30px;
+
+}
+
+body{
+
+background:#eef4ff;
+
+}
+/* ===========================
+   LIGHT THEME
+=========================== */
+
+body.light{
+    background:#eef4ff;
+    color:#222;
+}
+
+/* ===========================
+   DARK THEME
+=========================== */
+
+body.dark{
+    background:#111827;
+    color:#f9fafb;
+}
+
+body.dark .sidebar{
+    background:#0f172a !important;
+}
+
+body.dark .topbar{
+    background:#1f2937 !important;
+}
+
+body.dark .card{
+    background:#1f2937 !important;
+    color:white;
+}
+
+body.dark .footer{
+    background:#1f2937;
+    color:#ddd;
+}
+
+body.dark input,
+body.dark textarea,
+body.dark select{
+
+    background:#374151 !important;
+    color:white !important;
+    border:1px solid #4b5563;
+}
+
+body.dark .form-control,
+body.dark .form-select{
+
+    background:#374151 !important;
+    color:white !important;
+}
+
+body.dark .list-group-item{
+
+    background:#1f2937;
+    color:white;
+}
+
+body.dark hr{
+
+    border-color:#4b5563;
+}
+
+</style>
+
+</head>
+
+{% if user.is_authenticated %}
+
+<body class="{{ request.user.studentprofile.theme }}">
+
+{% else %}
+
+<body class="light">
+
+{% endif %}
+
+<div class="sidebar">
+    
+
+<div class="logo">
+
+<h2>
+
+🚀 CareerForge AI
+
+</h2>
+
+<p>
+
+Build • Prepare • Apply • Get Hired
+
+</p>
+
+</div>
+
+<hr>
+
+<a
+href="{% url 'dashboard' %}"
+class="{% if request.path == '/dashboard/' %}active{% endif %}">
+
+<i class="fas fa-home"></i>
+
+{{ labels.dashboard }}
+
+</a>
+
+<a
+href="{% url 'profile' %}"
+class="{% if request.path == '/profile/' %}active{% endif %}">
+
+<i class="fas fa-user"></i>
+
+{{ labels.profile }}
+
+</a>
+<a
+href="{% url 'settings' %}"
+class="{% if request.path == '/settings/' %}active{% endif %}">
+
+<i class="fas fa-cog"></i>
+
+{{ labels.settings }}
+
+</a>
+
+<a href="/upload-resume/">
+
+<i class="fas fa-file-upload"></i>
+
+{{ labels.upload_resume }}
+
+</a>
+
+<a href="/resume-summary/">
+
+<i class="fas fa-file-alt"></i>
+
+{{ labels.resume_summary }}
+
+</a>
+
+<a href="/resume-improvement/">
+
+<i class="fas fa-wand-magic-sparkles"></i>
+
+{{ labels.resume_improvement }}
+
+</a>
+
+<a href="/career-analysis/">
+
+<i class="fas fa-compass"></i>
+
+{{ labels.career_copilot }}
+
+</a>
+
+<a href="/career-roadmap/">
+
+<i class="fas fa-map"></i>
+
+{{ labels.career_roadmap }}
+
+</a>
+
+<a href="/placement-prediction/">
+
+<i class="fas fa-chart-line"></i>
+
+{{ labels.placement_prediction }}
+
+</a>
+
+<a href="/interview-prep/">
+
+<i class="fas fa-microphone"></i>
+
+{{ labels.interview_prep }}
+
+</a>
+
+<a href="/interview-feedback/">
+
+<i class="fas fa-robot"></i>
+
+{{ labels.mock_interview }}
+
+</a>
+
+<a href="/real-jobs/">
+
+<i class="fas fa-briefcase"></i>
+
+{{ labels.real_jobs }}
+
+</a>
+
+<a href="/saved-jobs/">
+
+<i class="fas fa-bookmark"></i>
+
+{{ labels.saved_jobs }}
+
+</a>
+
+<a href="/applications/">
+
+<i class="fas fa-folder-open"></i>
+
+{{ labels.applications }}
+
+</a>
+
+<a href="/notifications/">
+
+<i class="fas fa-bell"></i>
+
+{{ labels.notifications }}
+
+{% if unread_notifications > 0 %}
+
+<span
+class="badge rounded-pill bg-danger float-end px-3 py-2">
+
+{{ unread_notifications }}
+
+</span>
+
+{% endif %}
+
+</a>
+
+<a href="/analytics/">
+
+<i class="fas fa-chart-pie"></i>
+
+{{ labels.analytics }}
+
+</a>
+<hr>
+
+<form
+action="{% url 'logout' %}"
+method="POST">
+
+{% csrf_token %}
+
+<button
+type="submit"
+class="btn btn-danger w-100 rounded-3">
+
+<i class="fas fa-sign-out-alt me-2"></i>
+
+{{ labels.logout }}
+
+</button>
+
+</form>
+</div>
+
+<div class="main">
+
+<div class="topbar">
+
+    <div class="d-flex align-items-center">
+
+        <div>
+
+            <h3 class="fw-bold text-white mb-0">
+
+🚀 CareerForge AI
+
+</h3>
+
+            <small class="text-light">
+
+{{ labels.welcome }},
+
+            <strong>
+
+{{ request.user.first_name|default:request.user.username }}
+
+</strong>
+
+</small>
+<div style="font-size:14px;color:white;">
+
+<div id="liveClock" class="text-white small">
+
+🕒 {{ current_time }}
+
+</div>
+
+</div>
+
+</div>
+
+    </div>
+
+    <div class="top-buttons d-flex align-items-center gap-2">
+
+        <a
+            href="{% url 'dashboard' %}"
+            class="btn btn-outline-light rounded-pill px-4">
+
+            <i class="fas fa-home me-2"></i>
+
+            Dashboard
+
+        </a>
+
+        <a
+            href="{% url 'profile' %}"
+            class="btn btn-outline-light rounded-pill px-4">
+
+            <i class="fas fa-user me-2"></i>
+
+            Profile
+
+        </a>
+
+        <a
+            href="{% url 'settings' %}"
+            class="btn btn-outline-light rounded-pill px-4">
+
+            <i class="fas fa-cog me-2"></i>
+
+            Settings
+
+        </a>
+
+        <form
+action="{% url 'logout' %}"
+method="POST"
+class="m-0">
+
+{% csrf_token %}
+
+        <button
+type="submit"
+class="btn btn-danger rounded-pill px-4">
+
+<i class="fas fa-sign-out-alt me-2"></i>
+
+Logout
+
+</button>
+
+</form>
+
+    </div>
+
+</div>
+
+<div class="content">
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+
+<div class="footer">
+
+© 2026 CareerForge AI • AI Powered Career Platform
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+function(){
+
+document.querySelectorAll(".card").forEach(
+
+(card,index)=>{
+
+card.style.opacity=0;
+
+card.style.transform="translateY(20px)";
+
+setTimeout(()=>{
+
+card.style.transition="all .5s";
+
+card.style.opacity=1;
+
+card.style.transform="translateY(0px)";
+
+},index*120);
+
+});
+
+});
+
+</script>
+<script>
+
+document.addEventListener(
+
+"DOMContentLoaded",
+
+function(){
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(25px)";
+
+setTimeout(()=>{
+
+card.style.transition=".5s";
+
+card.style.opacity="1";
+
+card.style.transform="translateY(0px)";
+
+},index*120);
+
+});
+
+});
+
+</script>
+<script>
+
+function updateClock(){
+
+    const now = new Date();
+
+    const options = {
+
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+
+        timeZone: "{{ request.user.studentprofile.timezone }}"
+
+    };
+
+    document.getElementById("liveClock").innerHTML =
+        "🕒 " + now.toLocaleString("en-IN", options);
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-danger fs-6 px-3 py-2 mb-3">
+
+🎤 AI Powered Interview Coach
+
+</span>
+
+<h1 class="display-3 fw-bold">
+
+AI Interview Studio
+
+</h1>
+
+<p class="lead text-muted">
+
+Practice technical, project, internship and HR interviews
+generated specifically from your resume.
+
+</p>
+
+<div class="d-flex gap-3 mt-4">
+
+<a href="/interview-feedback/"
+class="btn btn-danger btn-lg rounded-pill">
+
+🎤 Mock Interview
+
+</a>
+
+<a href="/dashboard/"
+class="btn btn-primary btn-lg rounded-pill">
+
+🏠 Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="
+width:220px;
+height:220px;
+background:linear-gradient(135deg,#ef4444,#7c3aed);
+font-size:80px;
+color:white;
+box-shadow:0 20px 40px rgba(239,68,68,.3);
+">
+
+🎤
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="row mb-5">
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>{{ total_questions }}</h1>
+
+<h5>Total Questions</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>{{ technical_count }}</h1>
+
+<h5>Technical</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>{{ project_count }}</h1>
+
+<h5>Projects</h5>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h1>{{ hr_count }}</h1>
+
+<h5>HR</h5>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Resume Questions ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<h2 class="fw-bold mb-4">
+
+📚 Resume Based Questions
+
+</h2>
+
+<div class="accordion" id="resumeQuestions">
+
+{% for q in questions %}
+
+<div class="accordion-item mb-3 border-0 rounded-4 shadow-sm">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed fw-bold"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#question{{ forloop.counter }}">
+
+Question {{ forloop.counter }}
+
+</button>
+
+</h2>
+
+<div
+id="question{{ forloop.counter }}"
+class="accordion-collapse collapse"
+data-bs-parent="#resumeQuestions">
+
+<div class="accordion-body">
+
+<h5 class="mb-3">
+
+{{ q.question }}
+
+</h5>
+
+<hr>
+
+<p>
+
+{{ q.answer }}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="alert alert-warning">
+
+No interview questions found.
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= AI Interview ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<h2 class="fw-bold mb-4">
+
+🤖 AI Generated Interview Questions
+
+</h2>
+
+<div
+class="bg-light rounded-4 p-4 border">
+
+<pre
+style="
+white-space:pre-wrap;
+font-size:16px;
+font-family:inherit;
+margin:0;
+">
+
+{{ ai_questions }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= Tips ================= -->
+
+<div class="row mb-5">
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+
+<h1>🧠</h1>
+
+<h4>Technical Round</h4>
+
+<p class="text-muted">
+
+Explain concepts with examples.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+
+<h1>💼</h1>
+
+<h4>Project Round</h4>
+
+<p class="text-muted">
+
+Explain architecture and challenges.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card border-0 shadow rounded-4 p-4 text-center h-100">
+
+<h1>🎯</h1>
+
+<h4>HR Round</h4>
+
+<p class="text-muted">
+
+Be confident and communicate clearly.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+<div class="text-center mt-5">
+
+<a
+href="/interview-feedback/"
+class="btn btn-danger btn-lg rounded-pill px-5 me-3">
+
+🎤 Start Mock Interview
+
+</a>
+
+<a
+href="/dashboard/"
+class="btn btn-primary btn-lg rounded-pill px-5">
+
+🏠 Dashboard
+
+</a>
+
+</div>
+</div>
+
+</div>
+
+
+{% endblock %}

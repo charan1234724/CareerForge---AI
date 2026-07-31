@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="card border-0 shadow-lg rounded-5">
+
+<div class="card-body p-5">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+
+<h1 class="fw-bold">
+
+🐞 Report a Bug
+
+</h1>
+
+<p class="text-muted">
+
+Found a problem? Let us know so we can improve CareerForge AI.
+
+</p>
+
+</div>
+
+<a
+href="{% url 'settings' %}"
+class="btn btn-outline-primary rounded-pill">
+
+⚙ Back to Settings
+
+</a>
+
+</div>
+
+<hr>
+
+{% if messages %}
+
+{% for message in messages %}
+
+<div class="alert alert-success rounded-4">
+
+{{ message }}
+
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+<form
+method="POST"
+enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<div class="mb-4">
+
+<label class="form-label fw-bold">
+
+Bug Title
+
+</label>
+
+{{ form.title }}
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label fw-bold">
+
+Description
+
+</label>
+
+{{ form.description }}
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label fw-bold">
+
+Page / Feature
+
+</label>
+
+{{ form.page }}
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label fw-bold">
+
+Screenshot (Optional)
+
+</label>
+
+{{ form.screenshot }}
+
+</div>
+
+<div class="text-end">
+
+<button
+type="submit"
+class="btn btn-danger btn-lg rounded-pill px-5">
+
+🐞 Submit Bug Report
+
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="card border-0 shadow-lg rounded-5">
+
+<div class="card-body p-5">
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<div>
+
+<h1 class="fw-bold">
+
+❓ Frequently Asked Questions
+
+</h1>
+
+<p class="text-muted">
+
+Find answers to the most common CareerForge AI questions.
+
+</p>
+
+</div>
+
+<a
+href="{% url 'settings' %}"
+class="btn btn-outline-primary rounded-pill">
+
+⚙ Back to Settings
+
+</a>
+
+</div>
+
+<hr>
+
+<div class="accordion" id="faqAccordion">
+
+<!-- FAQ 1 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq1">
+
+How do I upload my resume?
+
+</button>
+
+</h2>
+
+<div
+id="faq1"
+class="accordion-collapse collapse show"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Go to the Resume section and upload your resume in PDF format. CareerForge AI will automatically analyze it and extract your skills.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAQ 2 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq2">
+
+How is my Resume Score calculated?
+
+</button>
+
+</h2>
+
+<div
+id="faq2"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+The Resume Score is based on resume completeness, technical skills, projects, education, keywords, and overall ATS compatibility.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAQ 3 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq3">
+
+How do I generate my portfolio?
+
+</button>
+
+</h2>
+
+<div
+id="faq3"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Upload your resume and visit the Portfolio Studio. Click Generate Portfolio to create an AI-powered portfolio website.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAQ 4 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq4">
+
+Can I regenerate my portfolio?
+
+</button>
+
+</h2>
+
+<div
+id="faq4"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Yes. Click the Regenerate Portfolio button to create a fresh version while keeping your previous data.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAQ 5 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq5">
+
+How can I contact support?
+
+</button>
+
+</h2>
+
+<div
+id="faq5"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Open Settings and click Contact Support. Submit your issue and our team can review your support ticket.
+
+</div>
+
+</div>
+
+</div>
+
+<!-- FAQ 6 -->
+
+<div class="accordion-item">
+
+<h2 class="accordion-header">
+
+<button
+class="accordion-button collapsed"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#faq6">
+
+Can I download my CareerForge data?
+
+</button>
+
+</h2>
+
+<div
+id="faq6"
+class="accordion-collapse collapse"
+data-bs-parent="#faqAccordion">
+
+<div class="accordion-body">
+
+Yes. Use the Backup Data option to download your profile, resume text, and generated portfolio in a ZIP file.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

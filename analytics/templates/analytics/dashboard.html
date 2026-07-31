@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>
+📊 Admin Analytics Dashboard
+</h1>
+
+<div class="row mt-4">
+
+<div class="col-md-3">
+<div class="card p-4">
+<h4>Users</h4>
+<h2>{{ users }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4">
+<h4>Resumes</h4>
+<h2>{{ resumes }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4">
+<h4>Applications</h4>
+<h2>{{ applications }}</h2>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="card p-4">
+<h4>Saved Jobs</h4>
+<h2>{{ saved_jobs }}</h2>
+</div>
+</div>
+
+</div>
+<hr>
+
+<h2>
+
+📊 Career Analytics
+
+</h2>
+
+<div class="card p-4">
+
+<canvas
+id="careerChart">
+
+</canvas>
+
+</div>
+<div class="card p-4 mt-4">
+
+<h4>
+Average Resume Score
+</h4>
+
+<h1>
+{{ avg_score }}/100
+</h1>
+
+</div>
+<script>
+
+const ctx =
+document.getElementById(
+'careerChart'
+);
+
+new Chart(
+
+ctx,
+
+{
+
+type:'bar',
+
+data:{
+
+labels:[
+
+'Applications',
+
+'Saved Jobs',
+
+'Skills'
+
+],
+
+datasets:[{
+
+label:'Career Progress',
+
+data:[
+
+{{ applications }},
+
+{{ saved_jobs }},
+
+{{ skills }}
+
+]
+
+}]
+
+}
+
+}
+
+);
+
+</script>
+{% endblock %}

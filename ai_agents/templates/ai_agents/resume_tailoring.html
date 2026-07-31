@@ -1,0 +1,397 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid py-5">
+
+<div class="container">
+
+<!-- ================= HERO ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 overflow-hidden mb-5">
+
+<div class="card-body p-5">
+
+<div class="row align-items-center">
+
+<div class="col-lg-8">
+
+<span class="badge bg-warning text-dark fs-6 px-3 py-2 mb-3">
+
+🎯 AI Resume Tailoring Studio
+
+</span>
+
+<h1 class="display-4 fw-bold">
+
+Optimize Your Resume
+
+</h1>
+
+<p class="lead text-muted">
+
+Improve your resume for a specific job description using AI-powered keyword analysis, ATS optimization, and recruiter recommendations.
+
+</p>
+
+<div class="mt-4">
+
+<a href="/dashboard/" class="btn btn-primary btn-lg rounded-pill me-2">
+
+🏠 Dashboard
+
+</a>
+
+<a href="/resume-improvement/" class="btn btn-success btn-lg rounded-pill me-2">
+
+📄 Resume Improvement
+
+</a>
+
+<a href="/placement-prediction/" class="btn btn-danger btn-lg rounded-pill">
+
+🎯 Placement Prediction
+
+</a>
+
+</div>
+
+</div>
+
+<div class="col-lg-4 text-center">
+
+<div
+class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
+
+style="
+width:220px;
+height:220px;
+background:linear-gradient(135deg,#f59e0b,#ef4444);
+color:white;
+font-size:60px;
+font-weight:bold;
+box-shadow:0 20px 40px rgba(245,158,11,.35);
+">
+
+ATS
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Analytics ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>92%</h2>
+
+<p class="text-muted mb-0">
+
+ATS Match
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>18</h2>
+
+<p class="text-muted mb-0">
+
+Keywords Found
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>6</h2>
+
+<p class="text-muted mb-0">
+
+Missing Skills
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-lg-3 mb-4">
+
+<div class="card border-0 shadow-lg rounded-4 text-center p-4">
+
+<h2>95%</h2>
+
+<p class="text-muted mb-0">
+
+Recruiter Readiness
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Progress ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-body p-5">
+
+<h2 class="fw-bold mb-4">
+
+📈 Resume Match Progress
+
+</h2>
+
+<label class="fw-bold">
+
+ATS Compatibility
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+
+style="width:92%;">
+
+92%
+
+</div>
+
+</div>
+
+<label class="fw-bold">
+
+Job Match
+
+</label>
+
+<div class="progress mb-4" style="height:22px;">
+
+<div class="progress-bar bg-primary progress-bar-striped progress-bar-animated"
+
+style="width:88%;">
+
+88%
+
+</div>
+
+</div>
+
+<label class="fw-bold">
+
+Resume Quality
+
+</label>
+
+<div class="progress" style="height:22px;">
+
+<div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+
+style="width:90%;">
+
+90%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Suggestions ================= -->
+
+<div class="row mb-5">
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-lg rounded-5 h-100">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold mb-4">
+
+✅ Recommended Improvements
+
+</h3>
+
+<div class="alert alert-success">
+
+Add measurable achievements.
+
+</div>
+
+<div class="alert alert-success">
+
+Include Docker experience.
+
+</div>
+
+<div class="alert alert-success">
+
+Mention REST APIs.
+
+</div>
+
+<div class="alert alert-success">
+
+Highlight cloud deployment.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-6">
+
+<div class="card border-0 shadow-lg rounded-5 h-100">
+
+<div class="card-body p-4">
+
+<h3 class="fw-bold mb-4">
+
+⚠ Missing Keywords
+
+</h3>
+
+<span class="badge bg-danger fs-6 m-2">
+
+Docker
+
+</span>
+
+<span class="badge bg-danger fs-6 m-2">
+
+AWS
+
+</span>
+
+<span class="badge bg-danger fs-6 m-2">
+
+REST API
+
+</span>
+
+<span class="badge bg-danger fs-6 m-2">
+
+CI/CD
+
+</span>
+
+<span class="badge bg-danger fs-6 m-2">
+
+Kubernetes
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= AI Report ================= -->
+
+<div class="card border-0 shadow-lg rounded-5 mb-5">
+
+<div class="card-header bg-dark text-white">
+
+<h3>
+
+🤖 Tailored Resume Report
+
+</h3>
+
+</div>
+
+<div class="card-body">
+
+<div
+style="
+background:#111827;
+color:#f8fafc;
+padding:30px;
+border-radius:18px;
+max-height:650px;
+overflow:auto;
+">
+
+<pre
+style="
+white-space:pre-wrap;
+background:transparent;
+color:white;
+font-size:15px;
+margin:0;
+">
+
+{{ result }}
+
+</pre>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Bottom Buttons ================= -->
+
+<div class="text-center mt-5">
+
+<a href="/resume-summary/" class="btn btn-success btn-lg rounded-pill px-5 me-3">
+
+📄 Resume Summary
+
+</a>
+
+<a href="/resume-improvement/" class="btn btn-primary btn-lg rounded-pill px-5 me-3">
+
+🚀 Improve Resume
+
+</a>
+
+<a href="/placement-prediction/" class="btn btn-danger btn-lg rounded-pill px-5">
+
+🎯 Placement Prediction
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
