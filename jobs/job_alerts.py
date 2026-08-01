@@ -1,13 +1,14 @@
 from resumes.models import Resume
 from jobs.alert_engine import send_job_alert
 
-from jobs.embedding_matcher import calculate_embedding_match
+
 
 
 MATCH_THRESHOLD = 80
 
 
 def check_user_jobs(user, jobs):
+    from jobs.embedding_matcher import calculate_embedding_match
 
     try:
 
