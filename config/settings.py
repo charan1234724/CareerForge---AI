@@ -27,11 +27,12 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = config(
+
+
+ALLOWED_HOSTS = os.getenv(
     "ALLOWED_HOSTS",
-    default="127.0.0.1,localhost",
-    cast=lambda v: [s.strip() for s in v.split(",")]
-)
+    "127.0.0.1,localhost,careerforge-ai-ha9i.onrender.com,ysrec.site,www.ysrec.site"
+).split(",")
 ADZUNA_APP_ID= config("ADZUNA_APP_ID")
 ADZUNA_APP_KEY= config("ADZUNA_APP_KEY")
 JOOBLE_API_KEY = config("JOOBLE_API_KEY")
