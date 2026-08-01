@@ -43,9 +43,6 @@ from .cache_engine import (
 )
 from .models import Job, CoverLetter
 def matched_jobs(request):
-    from jobs.embedding_matcher import (
-    calculate_embedding_match
-)
 
     resume = Resume.objects.last()
 
