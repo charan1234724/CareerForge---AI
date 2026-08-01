@@ -8,9 +8,7 @@ from .real_matcher import calculate_real_match
 from ai_agents.skill_gap_agent import (
     analyze_skill_gap
 )
-from jobs.embedding_matcher import (
-    calculate_embedding_match
-)
+
 
 from jobs.profile_builder import (
     build_profile
@@ -45,6 +43,9 @@ from .cache_engine import (
 )
 from .models import Job, CoverLetter
 def matched_jobs(request):
+    from jobs.embedding_matcher import (
+    calculate_embedding_match
+)
 
     resume = Resume.objects.last()
 

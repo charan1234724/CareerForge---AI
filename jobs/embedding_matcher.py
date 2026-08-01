@@ -1,20 +1,26 @@
-from sentence_transformers import (
-    SentenceTransformer
-)
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
 
-from sklearn.metrics.pairwise import (
-    cosine_similarity
-)
+model = None
 
-model = SentenceTransformer(
-    "BAAI/bge-small-en-v1.5"
-)
+
+def get_model():
+    global model
+
+    if model is None:
+        model = SentenceTransformer(
+            "BAAI/bge-small-en-v1.5"
+        )
+
+    return model
 
 
 def calculate_embedding_match(
     resume_text,
     job_text
 ):
+
+    model = get_model()
 
     resume_embedding = model.encode(
         [resume_text]
