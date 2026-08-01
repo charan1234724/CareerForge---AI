@@ -4,13 +4,16 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 urlpatterns = [
+    path("", RedirectView.as_view(url="/login/", permanent=False)),
     path("careerforge-admin-Charan9494/", admin.site.urls),
     path('', include('jobs.urls')),
     path('', include('resumes.urls')),
     path('', include('accounts.urls')),
     path('', include('applications.urls')),
+    
     path(
     "",
     include("ai_agents.urls")
