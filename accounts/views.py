@@ -27,7 +27,7 @@ from reportlab.platypus import (
 )
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet
-
+import traceback
 from ai_agents.score_engine import calculate_resume_scores
 from django.http import HttpResponse
 from ai_agents.models import Portfolio
@@ -388,6 +388,7 @@ def delete_account(request):
         request,
         "accounts/delete_account.html"
     )
+from django.conf import settings
 def custom_password_reset(request):
 
     if request.method == "POST":
@@ -415,10 +416,9 @@ def custom_password_reset(request):
 
         token = default_token_generator.make_token(user)
 
-        reset_link = (
-            f"http://{current_site.domain}"
-            f"/reset/{uid}/{token}/"
-        )
+        reset_link = request.build_absolute_uri(
+    f"/reset/{uid}/{token}/"
+)
 
         subject = "CareerForge AI - Password Reset"
 
@@ -453,7 +453,7 @@ def custom_password_reset(request):
         message = EmailMultiAlternatives(
     subject=subject,
     body=text_content,
-    from_email="CareerForge AI <charan@ysrec.site>",
+    from_email=settings.DEFAULT_FROM_EMAIL,
     to=[user.email],
 )
 
@@ -474,7 +474,7 @@ def custom_password_reset(request):
             return redirect("password_reset_done")
 
         except Exception as e:
-            print("EMAIL ERROR:", e)
+            traceback.print_exc()
 
             messages.error(
         request,
