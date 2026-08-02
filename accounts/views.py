@@ -390,6 +390,7 @@ def delete_account(request):
     )
 from django.conf import settings
 def custom_password_reset(request):
+    raise Exception("CUSTOM PASSWORD RESET VIEW IS RUNNING")
     print("PASSWORD RESET VIEW CALLED")
     
 
