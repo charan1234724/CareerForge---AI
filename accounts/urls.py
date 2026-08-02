@@ -24,7 +24,6 @@ contact_support,
 faq,
 report_bug,
 )
-from .views import custom_password_reset
 from .dashboard import dashboard
 
 urlpatterns=[
@@ -137,7 +136,12 @@ name="settings"
 ),
 path(
     "password_reset/",
-    custom_password_reset,
+    auth_views.PasswordResetView.as_view(
+        template_name="registration/password_reset_form.html",
+        email_template_name="registration/password_reset_email.txt",
+        html_email_template_name="registration/password_reset_email.html",
+        success_url="/password_reset/done/",
+    ),
     name="password_reset",
 ),
 path(
