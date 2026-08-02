@@ -390,10 +390,17 @@ def delete_account(request):
     )
 from django.conf import settings
 def custom_password_reset(request):
+    print("PASSWORD RESET VIEW CALLED")
+    
 
     if request.method == "POST":
 
         email = request.POST.get("email")
+        print("User found:", user.email)
+
+        print("Creating email...")
+
+        print("About to send email...")
 
         try:
 
